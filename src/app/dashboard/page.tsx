@@ -1,7 +1,7 @@
-import React from 'react'
-
-export const page = () => {
+export default function DashboardPage() {
   return (
-    <div>page</div>
+    <div>
+      <h1></h1>
+    </div>
   )
 }
