@@ -103,7 +103,7 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
           </div>
         </header>
         <div className="container py-3 md:py-5">
-          <main className="mx-auto px-4 md:px-8 bg-[#1D2735]">
+          <main className="mx-auto px-4 md:px-8 ">
             {children}
           </main>
         </div>
