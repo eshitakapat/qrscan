@@ -45,7 +45,7 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
   }
   
   return (
-    <div className="flex h-screen overflow-hidden  bg-gray-500">
+    <div className="flex h-screen overflow-hidden  bg-black">
       <DashboardSidebar />
       <div className="flex-1 overflow-auto">
         <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b dark:border-gray-700 bg-[#2C3441] px-6 w-full">

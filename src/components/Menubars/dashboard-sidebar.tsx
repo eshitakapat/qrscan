@@ -126,7 +126,7 @@ onMouseLeave={handleMouseLeave}
 >
 
 {/* Header */}
-<div className={`flex  items-center sm:justify-center justify-start border-b dark:border-gray-700 pl-5 sm:px-2 transition-all duration-300 ${expanded?"h-16":"h-17"} px-0`
+<div className={`flex  items-center sm:justify-center justify-start border-b dark:border-gray-700 pl-5 sm:px-2 transition-all duration-300 ${expanded?"h-16":"h-17.5"} px-0`
 
 }
 
