@@ -1,7 +1,7 @@
 import "./globals.css"
 
 export const metadata = {
-  title: "Storeytics",
+  title: "Storelytics",
   description: "Your dashboard description here",
 }
 
