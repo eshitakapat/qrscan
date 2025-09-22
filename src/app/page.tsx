@@ -1,7 +1,16 @@
-import React from 'react'
+import Navbar from "@/components/landingPage/navBar/page"
+import HeroSection from "@/components/landingPage/heroSection/page"
+import ServicesSection from "@/components/landingPage/keyFeatures/page"
+import Footer from "@/components/landingPage/footer/page"
 
-export default function Page() {
+
+export default function HomePage() {
   return (
-    <div>QR scanner </div>
+    <main>
+      <Navbar/>
+      <HeroSection />
+      <ServicesSection />
+      <Footer/>
+    </main>
   )
 }
