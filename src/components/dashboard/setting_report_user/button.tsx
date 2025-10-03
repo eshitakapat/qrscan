@@ -5,19 +5,27 @@ import { cn } from "@/lib/utils";
 
 const buttonVariants = {
   default:
-    "bg-[#54734e] text-[#ffffff] hover:bg-[#54734e]/90",
+    "bg-[#54734e] text-[#ffffff] hover:bg-[#54734e]/90", 
   destructive:
-    "bg-[#e64040] text-[#ffffff] hover:bg-[#e64040]/90",
+    "bg-[#e64040] text-[#ffffff] hover:bg-[#e64040]/90", 
   outline:
-    "border border-[#213322] text-[#f2f2f2] bg-[#091315] hover:bg-[#8ba47d] hover:text-[#1a1a1a]",
+    "border border-[#213322] text-[#f2f2f2] bg-[#091315] hover:bg-[#8ba47d] hover:text-[#1a1a1a]", 
   secondary:
-    "bg-[#172a1d] text-[#d9d9d9] hover:bg-[#172a1d]/80",
+    "bg-[#172a1d] text-[#d9d9d9] hover:bg-[#172a1d]/80", 
   ghost:
-    "hover:bg-[#8ba47d] hover:text-[#1a1a1a]",
+    "hover:bg-[#8ba47d] hover:text-[#1a1a1a]", 
   link:
-    "text-[#54734e] underline-offset-4 hover:underline",
+    "text-[#54734e] underline-offset-4 hover:underline", 
   success:
-    "bg-[#33cc33] text-[#ffffff] hover:bg-[#33cc33]/90",
+    "bg-[#33cc33] text-[#ffffff] hover:bg-[#33cc33]/90", 
+  warning:
+    "bg-[#ffcc00] text-[#1a1a1a] hover:bg-[#ffcc00]/90", 
+  admin:
+    "bg-[#4d94ff] text-[#ffffff] hover:bg-[#4d94ff]/90", 
+  employee:
+    "bg-[#8ba47d] text-[#1a1a1a] hover:bg-[#8ba47d]/90", 
+  customer:
+    "bg-[#c47dd9] text-[#1a1a1a] hover:bg-[#c47dd9]/90", 
 };
 
 const buttonSizes = {
@@ -39,7 +47,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#54734e] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
           buttonVariants[variant],
           buttonSizes[size],
           className

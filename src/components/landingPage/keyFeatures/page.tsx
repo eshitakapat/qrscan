@@ -6,7 +6,7 @@ import {
   Package, 
   LineChart 
 } from "lucide-react"
-import  Card  from "@/components/landingPage/Card"
+import Card from "@/components/landingPage/Card"
 
 export default function ServicesSection() {
   const services = [
@@ -43,16 +43,18 @@ export default function ServicesSection() {
   ]
 
   return (
-    <section className="bg-[#030303] min-h-screen flex items-center justify-center p-8">
+    <section className="bg-[#091315] min-h-screen flex items-center justify-center p-8">
       <div>
         <div className="m-6 p-2 rounded-2xl text-center">
-            <h1 className="text-6xl text-[#E2F1E7] shadow-2xl">EFFICIENT AND INTIGRATED <br/>INVENTORY SERVICES </h1>
+          <h1 className="text-6xl text-[#f2f2f2] shadow-2xl">
+            EFFICIENT AND INTEGRATED <br /> INVENTORY SERVICES
+          </h1>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
-            {services.map((service, idx) => (
+          {services.map((service, idx) => (
             <Card key={idx} {...service} />
-            ))}
-      </div>
+          ))}
+        </div>
       </div>
     </section>
   )

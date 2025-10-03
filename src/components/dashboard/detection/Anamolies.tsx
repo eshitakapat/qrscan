@@ -5,37 +5,37 @@ const anomalies = [
     product: "iPad Pro",
     type: "THEFT",
     severity: "high",
-    severityColor: "bg-red-800 text-red-100",
+    severityColor: "bg-[#264d26] text-[#d4f5d4]", 
     description: "Unusual stock decrease detected without corresponding sales record",
     time: "2024-01-15 10:30 AM",
     confidence: 94,
     status: "investigating",
-    statusColor: "bg-orange-800 text-orange-100",
-    cardColor: "bg-[#5a2323]",
+    statusColor: "bg-[#3a5a40] text-[#eaf6ea]", 
+    cardColor: "bg-[#1f2e1f]",
   },
   {
     product: "Samsung Galaxy S24",
     type: "DATA ERROR",
     severity: "medium",
-    severityColor: "bg-yellow-800 text-yellow-100",
+    severityColor: "bg-[#3d6650] text-[#eaf6ea]", 
     description: "Stock count mismatch between physical and system inventory",
     time: "2024-01-15 09:15 AM",
     confidence: 87,
     status: "resolved",
-    statusColor: "bg-green-900 text-green-200",
-    cardColor: "bg-[#4a2027]",
+    statusColor: "bg-[#2f4f2f] text-[#d6f0d6]", 
+    cardColor: "bg-[#253a29]", 
   },
   {
     product: "MacBook Air M3",
     type: "UNUSUAL PATTERN",
     severity: "low",
-    severityColor: "bg-blue-900 text-blue-100",
+    severityColor: "bg-[#54734e] text-[#f2f2f2]",
     description: "Abnormal sales velocity detected - 300% above normal",
     time: "2024-01-15 08:45 AM",
     confidence: 76,
     status: "monitoring",
-    statusColor: "bg-blue-900 text-blue-100",
-    cardColor: "bg-[#4a2e15]",
+    statusColor: "bg-[#6a8f6a] text-[#f9fdf9]", 
+    cardColor: "bg-[#2c3b2c]", 
   },
 ];
 
@@ -44,9 +44,11 @@ interface SeverityBadgeProps {
   color: string;
 }
 
-function SeverityBadge({ severity, color }:SeverityBadgeProps) {
+function SeverityBadge({ severity, color }: SeverityBadgeProps) {
   return (
-    <span className={`ml-2 px-2 py-0.5 rounded-full text-xs font-semibold uppercase ${color}`}>
+    <span
+      className={`ml-2 px-2 py-0.5 rounded-full text-xs font-semibold uppercase ${color}`}
+    >
       {severity}
     </span>
   );
@@ -57,9 +59,11 @@ interface StatusBadgeProps {
   color: string;
 }
 
-function StatusBadge({ status, color }:StatusBadgeProps) {
+function StatusBadge({ status, color }: StatusBadgeProps) {
   return (
-    <span className={`ml-2 px-3 py-1 rounded-full text-xs font-semibold capitalize ${color}`}>
+    <span
+      className={`ml-2 px-3 py-1 rounded-full text-xs font-semibold capitalize ${color}`}
+    >
       {status}
     </span>
   );
@@ -69,14 +73,14 @@ export default function DetectedAnomalies() {
   return (
     <div className="bg-[#18181b] border border-[#23232b] rounded-2xl p-6 mt-8">
       <div className="flex items-center mb-1">
-        <AlertTriangle className="w-5 h-5 text-red-400 mr-2" />
+        <AlertTriangle className="w-5 h-5 text-[#6ea96f] mr-2" /> {/* green accent */}
         <h2 className="text-2xl font-bold text-white">Detected Anomalies</h2>
       </div>
       <p className="text-gray-400 mb-6 text-sm">
         Recent anomalies detected by AI monitoring system
       </p>
       <div className="flex flex-col gap-4">
-        {anomalies.map((a, idx) => (
+        {anomalies.map((a) => (
           <div
             key={a.product}
             className={`${a.cardColor} rounded-xl px-6 py-5 flex flex-col md:flex-row md:items-center md:justify-between border border-[#23232b]`}
@@ -93,7 +97,8 @@ export default function DetectedAnomalies() {
                   Time: <span className="text-gray-100">{a.time}</span>
                 </span>
                 <span>
-                  Confidence: <span className="text-gray-100">{a.confidence}%</span>
+                  Confidence:{" "}
+                  <span className="text-gray-100">{a.confidence}%</span>
                 </span>
                 <StatusBadge status={a.status} color={a.statusColor} />
               </div>

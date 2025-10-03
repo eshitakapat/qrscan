@@ -4,7 +4,7 @@ import * as React from "react";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// ================== Context ==================
+//Context
 type SelectContextType = {
   value: string | null;
   setValue: (val: string) => void;
@@ -20,7 +20,7 @@ function useSelectContext() {
   return ctx;
 }
 
-// ================== Root ==================
+//Root
 interface SelectProps
   extends Omit<
     React.HTMLAttributes<HTMLDivElement>,
@@ -70,7 +70,7 @@ const Select: React.FC<SelectProps> = ({
   );
 };
 
-// ================== Trigger ==================
+// Trigger
 interface SelectTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectTriggerProps>(
@@ -101,13 +101,13 @@ const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectTriggerProps>(
 );
 SelectTrigger.displayName = "SelectTrigger";
 
-// ================== Value ==================
+// Value
 const SelectValue: React.FC<{ placeholder?: string }> = ({ placeholder }) => {
   const { value } = useSelectContext();
   return <span>{value ?? placeholder ?? "Select an option"}</span>;
 };
 
-// ================== Content ==================
+// Content
 interface SelectContentProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const SelectContent = React.forwardRef<HTMLDivElement, SelectContentProps>(({ className, children, ...props }, ref) => {
@@ -130,7 +130,7 @@ const SelectContent = React.forwardRef<HTMLDivElement, SelectContentProps>(({ cl
 });
 SelectContent.displayName = "SelectContent";
 
-// ================== Item ==================
+//Item 
 interface SelectItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   value: string;
 }
@@ -162,7 +162,7 @@ const SelectItem = React.forwardRef<HTMLButtonElement, SelectItemProps>(({ class
 });
 SelectItem.displayName = "SelectItem";
 
-// ================== Helpers ==================
+//Helpers
 const SelectGroup: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => (
   <div className={cn("p-1", className)} {...props} />
 );
@@ -187,7 +187,7 @@ const SelectScrollDownButton: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
   </div>
 );
 
-// ================== Exports ==================
+//Exports
 export {
   Select,
   SelectGroup,
