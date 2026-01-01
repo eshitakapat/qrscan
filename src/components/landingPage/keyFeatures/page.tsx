@@ -46,7 +46,7 @@ export default function ServicesSection() {
     <section className="bg-[#091315] min-h-screen flex items-center justify-center p-8">
       <div>
         <div className="m-6 p-2 rounded-2xl text-center">
-          <h1 className="text-6xl text-[#f2f2f2] shadow-2xl">
+          <h1 className="text-4xl text-[#f2f2f2] shadow-2xl">
             EFFICIENT AND INTEGRATED <br /> INVENTORY SERVICES
           </h1>
         </div>

@@ -7,7 +7,7 @@ export default function AssistantPanel() {
       <p className="text-[#a3bfa8] mb-8 text-lg">
         Intelligent inventory support and insights
       </p>
-      <div className="bg-[#1a2a1d] rounded-xl p-8 w-[600px]">
+      <div className="bg-primary rounded-xl p-8 w-[600px]">
         <div className="flex items-center mb-2">
           <Lock size={20} className="text-[#6fbf73] mr-1" />
           <span className="text-xl font-semibold text-white">
@@ -18,26 +18,26 @@ export default function AssistantPanel() {
           Ask questions about your inventory, get insights, and receive
           recommendations
         </p>
-        <div className="bg-[#233d29] rounded-lg p-5 mb-4">
+        <div className="bg-secondary rounded-lg p-5 mb-4">
           <p className="text-[#e2f1e4] mb-3">
             Hello! I'm your AI Inventory Assistant. I can help you with stock
             levels, demand forecasting, anomaly detection, and general inventory
             questions. What would you like to know?
           </p>
-          <span className="text-[#8cae90] text-xs">22:38:59</span>
+          <span className="text-primary text-xs">22:38:59</span>
           <div className="flex gap-2 mt-4">
-            <button className="bg-[#2f4d35] py-2 px-3 rounded text-white text-sm hover:bg-[#3e6244] transition">
+            <button className="bg-primary py-2 px-3 rounded text-white text-sm hover:bg-[#3e6244] transition">
               Show me low stock items
             </button>
-            <button className="bg-[#2f4d35] py-2 px-3 rounded text-white text-sm hover:bg-[#3e6244] transition">
+            <button className="bg-primary py-2 px-3 rounded text-white text-sm hover:bg-[#3e6244] transition">
               What's the demand forecast for iPhone 15 Pro?
             </button>
           </div>
           <div className="flex gap-2 mt-2">
-            <button className="bg-[#2f4d35] py-2 px-3 rounded text-white text-sm hover:bg-[#3e6244] transition">
+            <button className="bg-primary py-2 px-3 rounded text-white text-sm hover:bg-[#3e6244] transition">
               Any anomalies detected today?
             </button>
-            <button className="bg-[#2f4d35] py-2 px-3 rounded text-white text-sm hover:bg-[#3e6244] transition">
+            <button className="bg-primary py-2 px-3 rounded text-white text-sm hover:bg-[#3e6244] transition">
               Generate a restock report
             </button>
           </div>

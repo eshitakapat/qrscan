@@ -6,33 +6,33 @@ const stats = [
     label: "Total Products",
     value: "5",
     icon: Package,
-    iconClass: "text-[#33cc33]", 
+    iconClass: "text-accent",
     change: "+2 from last week",
-    changeClass: "text-[#33cc33]",
+    changeClass: "text-foreground",
   },
   {
     label: "Low Stock Alerts",
     value: "2",
     icon: AlertTriangle,
-    iconClass: "text-[#8ba47d]", 
+    iconClass: "text-accent",
     change: "Requires attention",
-    changeClass: "text-[#8ba47d]",
+    changeClass: "text-foreground",
   },
   {
     label: "Total Value",
     value: "$62,257",
     icon: DollarSign,
-    iconClass: "text-[#54734e]", 
+    iconClass: "text-accent",
     change: "+12% from last month",
-    changeClass: "text-[#54734e]",
+    changeClass: "text-foreground",
   },
   {
     label: "AI Accuracy",
     value: "94.2%",
     icon: LineChart,
-    iconClass: "text-[#33cc33]", 
+    iconClass: "text-accent",
     change: "Prediction accuracy",
-    changeClass: "text-[#33cc33]",
+    changeClass: "text-foreground",
   },
 ];
 
@@ -42,16 +42,29 @@ export default function StatsCards() {
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className="bg-[#2c482e] rounded-lg p-6 flex flex-col gap-2 shadow border-b border-[#a6a6a6]"
+          className="
+            bg-primary
+            rounded-xl
+            p-6
+            flex flex-col
+            gap-2
+            shadow
+            border-b border-foreground/70
+            
+          "
         >
-          <div className="flex items-center justify-between text-[#a6a6a6] text-sm">
+          <div className="flex items-center justify-between text-subheading text-sm">
             <span>{stat.label}</span>
             <stat.icon className={`w-5 h-5 ${stat.iconClass}`} />
           </div>
-          <div className="text-3xl font-bold text-[#f2f2f2]">
+
+          <div className="text-3xl font-bold text-foreground">
             {stat.value}
           </div>
-          <div className={`${stat.changeClass} text-xs`}>{stat.change}</div>
+
+          <div className={`${stat.changeClass} text-xs`}>
+            {stat.change}
+          </div>
         </div>
       ))}
     </div>

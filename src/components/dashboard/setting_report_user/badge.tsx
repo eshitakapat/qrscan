@@ -18,29 +18,41 @@ interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const baseClasses =
-  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[#54734e] focus:ring-offset-2"
+  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
 
 const variants: Record<NonNullable<BadgeProps["variant"]>, string> = {
+  /* Base */
   default:
-    "border-transparent bg-[#54734e] text-[#ffffff] hover:bg-[#54734e]/90",
+    "border-border bg-background text-foreground",
+
   secondary:
-    "border-transparent bg-[#172a1d] text-[#d9d9d9] hover:bg-[#172a1d]/80",
+    "border-border bg-secondary text-foreground",
+
   destructive:
-    "border-transparent bg-[#e64040] text-[#ffffff] hover:bg-[#e64040]/80",
+    "border-destructive bg-destructive/15 text-destructive",
+
   outline:
-    "text-[#f2f2f2] border-[#213322]",
+    "border-border text-foreground",
+
+  /* 🔄 STATUS BADGES — THEME BASED */
   active:
-    "border-[#2db82d]/20 bg-[#2db82d]/10 text-[#2db82d]",
+    "border-secondary/70 bg-secondary/50 text-foreground",
+
   inactive:
-    "border-[#808080]/20 bg-[#808080]/10 text-[#808080]",
+    "border-muted/40 bg-muted/20 text-muted-foreground",
+
   pending:
-    "border-[#ffdb4d]/20 bg-[#ffdb4d]/10 text-[#ffdb4d]",
+    "border-warning/40 bg-warning text-secondary",
+
+  /* 🟢 ROLE BADGES — GREEN THEME */
   admin:
-    "border-[#4d94ff]/20 bg-[#4d94ff]/10 text-[#4d94ff]",
+    "border-secondary/70 bg-secondary/50 text-foreground",
+
   employee:
-    "border-[#8ba47d]/20 bg-[#8ba47d]/10 text-[#8ba47d]",
+    "border-secondary/50 bg-secondary/10 text-foreground",
+
   customer:
-    "border-[#c47dd9]/20 bg-[#c47dd9]/10 text-[#c47dd9]",
+    "border-background bg-background text-subheading",
 }
 
 function Badge({ className, variant = "default", ...props }: BadgeProps) {

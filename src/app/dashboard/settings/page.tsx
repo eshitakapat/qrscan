@@ -15,7 +15,6 @@ import {
 
 const Settings = () => {
   const handleSaveChanges = () => {
-    // Dummy save action - replace with API call later
     alert('Settings saved successfully!');
   };
 
@@ -24,8 +23,8 @@ const Settings = () => {
       <div className="mx-auto max-w-7xl space-y-6">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-[#f2f2f2]">Settings</h1>
-          <p className="mt-2 text-[#a6a6a6]">
+          <h1 className="text-3xl font-bold text-foreground">Settings</h1>
+          <p className="mt-2 text-subheading">
             Manage your account preferences
           </p>
         </div>
@@ -60,71 +59,66 @@ const Settings = () => {
             <Card>
               <CardHeader>
                 <div className="flex items-center space-x-2">
-                  <User className="h-5 w-5 text-accent" />
+                  <User className="h-5 w-5 text-foreground" />
                   <CardTitle>Store Information</CardTitle>
                 </div>
                 <CardDescription>
                   Manage your store's basic information and settings
                 </CardDescription>
               </CardHeader>
+
               <CardContent className="space-y-6">
                 <div className="grid gap-6 md:grid-cols-2">
+                  {[
+                    { label: 'Store Name', value: 'My Inventory Store', type: 'text' },
+                    { label: 'Email Address', value: 'admin@inventorystore.com', type: 'email' },
+                    { label: 'Phone Number', value: '+1 (555) 123-4567', type: 'tel' },
+                  ].map((field, i) => (
+                    <div key={i} className="space-y-2">
+                      <label className="text-sm font-medium text-foreground">{field.label}</label>
+                      <input
+                        type={field.type}
+                        defaultValue={field.value}
+                        className="w-full rounded-lg border border-border bg-secondary px-3 py-2 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-ring"
+                      />
+                    </div>
+                  ))}
+
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-[#f2f2f2]">Store Name</label>
-                    <input
-                      type="text"
-                      defaultValue="My Inventory Store"
-                      className="w-full rounded-lg border border-[#213322] bg-[#091315] px-3 py-2 text-sm text-[#f2f2f2] placeholder:text-[#a6a6a6] focus:outline-none focus:ring-2 focus:ring-ring"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-[#f2f2f2]">Email Address</label>
-                    <input
-                      type="email"
-                      defaultValue="admin@inventorystore.com"
-                      className="w-full rounded-lg border border-[#213322] bg-[#091315] px-3 py-2 text-sm text-[#f2f2f2] placeholder:text-[#a6a6a6] focus:outline-none focus:ring-2 focus:ring-ring"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-[#f2f2f2]">Phone Number</label>
-                    <input
-                      type="tel"
-                      defaultValue="+1 (555) 123-4567"
-                      className="w-full rounded-lg border border-[#213322] bg-[#091315] px-3 py-2 text-sm text-[#f2f2f2] placeholder:text-[#a6a6a6] focus:outline-none focus:ring-2 focus:ring-ring"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-[#f2f2f2]">Currency</label>
-                    <select className="w-full rounded-lg border border-[#213322] bg-[#091315] px-3 py-2 text-sm text-[#f2f2f2] focus:outline-none focus:ring-2 focus:ring-ring">
-                      <option value="USD">USD - US Dollar</option>
-                      <option value="EUR">EUR - Euro</option>
-                      <option value="GBP">GBP - British Pound</option>
-                      <option value="CAD">CAD - Canadian Dollar</option>
+                    <label className="text-sm font-medium text-foreground">Currency</label>
+                    <select className="w-full rounded-lg border border-border bg-secondary px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+                      <option>USD - US Dollar</option>
+                      <option>EUR - Euro</option>
+                      <option>GBP - British Pound</option>
+                      <option>CAD - Canadian Dollar</option>
                     </select>
                   </div>
                 </div>
+
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-[#f2f2f2]">Address</label>
+                  <label className="text-sm  font-medium text-foreground">Address</label>
                   <textarea
                     rows={3}
                     defaultValue={`123 Business Street
 Suite 100
 New York, NY 10001`}
-                    className="w-full rounded-lg border border-[#213322] bg-[#091315] px-3 py-2 text-sm text-[#f2f2f2] placeholder:text-[#a6a6a6] focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+                    className="w-full rounded-lg border border-border bg-secondary px-3 py-2 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-ring resize-none"
                   />
                 </div>
+
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-[#f2f2f2]">Timezone</label>
-                  <select className="w-full rounded-lg border border-[#213322] bg-[#091315] px-3 py-2 text-sm text-[#f2f2f2] focus:outline-none focus:ring-2 focus:ring-ring">
-                    <option value="EST">EST - Eastern Standard Time</option>
-                    <option value="CST">CST - Central Standard Time</option>
-                    <option value="MST">MST - Mountain Standard Time</option>
-                    <option value="PST">PST - Pacific Standard Time</option>
+                  <label className="text-sm font-medium text-foreground">Timezone</label>
+                  <select className="w-full rounded-lg border border-border bg-secondary px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+                    <option>EST - Eastern Standard Time</option>
+                    <option>CST - Central Standard Time</option>
+                    <option>MST - Mountain Standard Time</option>
+                    <option>PST - Pacific Standard Time</option>
                   </select>
                 </div>
+
                 <div className="pt-4">
-                  <Button onClick={handleSaveChanges} variant="success" size="default">
-                    <Save className="h-4 w-4 mr-2" />
+                  <Button onClick={handleSaveChanges} className='bg-card/50 hover:bg-background' variant="success">
+                    <Save className="h-4 w-4 mr-2 " />
                     Save Changes
                   </Button>
                 </div>
@@ -132,65 +126,25 @@ New York, NY 10001`}
             </Card>
           </TabsContent>
 
-          {/* QR Codes Tab */}
-          <TabsContent value="qr-codes">
-            <Card>
-              <CardContent className="space-y-6">
-                <div className="text-center py-16">
-                  <QrCode className="h-20 w-20 mx-auto text-[#a6a6a6]/50 mb-6" />
-                  <h3 className="text-2xl font-semibold text-[#f2f2f2] mb-3">Coming Soon</h3>
-                  <p className="text-[#a6a6a6] max-w-md mx-auto">
-                    QR Code management features are currently under development and will be available soon.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Notifications Tab */}
-          <TabsContent value="notifications">
-            <Card>
-              <CardContent className="space-y-6">
-                <div className="text-center py-16">
-                  <Bell className="h-20 w-20 mx-auto text-[#a6a6a6]/50 mb-6" />
-                  <h3 className="text-2xl font-semibold text-[#f2f2f2] mb-3">Coming Soon</h3>
-                  <p className="text-[#a6a6a6] max-w-md mx-auto">
-                    Notification management features are currently under development and will be available soon.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Appearance Tab */}
-          <TabsContent value="appearance">
-            <Card>
-              <CardContent className="space-y-6">
-                <div className="text-center py-16">
-                  <Palette className="h-20 w-20 mx-auto text-[#a6a6a6]/50 mb-6" />
-                  <h3 className="text-2xl font-semibold text-[#f2f2f2] mb-3">Coming Soon</h3>
-                  <p className="text-[#a6a6a6] max-w-md mx-auto">
-                    Appearance customization features are currently under development and will be available soon.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Backup Tab */}
-          <TabsContent value="backup">
-            <Card>
-              <CardContent className="space-y-6">
-                <div className="text-center py-16">
-                  <Database className="h-20 w-20 mx-auto text-[#a6a6a6]/50 mb-6" />
-                  <h3 className="text-2xl font-semibold text-[#f2f2f2] mb-3">Coming Soon</h3>
-                  <p className="text-[#a6a6a6] max-w-md mx-auto">
-                    Data backup and restore features are currently under development and will be available soon.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
+          {/* Coming Soon Tabs */}
+          {[
+            { value: 'qr-codes', icon: QrCode, label: 'QR Code management features are currently under development and will be available soon.' },
+            { value: 'notifications', icon: Bell, label: 'Notification management features are currently under development and will be available soon.' },
+            { value: 'appearance', icon: Palette, label: 'Appearance customization features are currently under development and will be available soon.' },
+            { value: 'backup', icon: Database, label: 'Data backup and restore features are currently under development and will be available soon.' },
+          ].map(({ value, icon: Icon, label }) => (
+            <TabsContent key={value} value={value}>
+              <Card>
+                <CardContent className="space-y-6">
+                  <div className="text-center py-16">
+                    <Icon className="h-20 w-20 mx-auto text-muted mb-2" />
+                    <h3 className="text-2xl font-semibold text-foreground mb-3">Coming Soon</h3>
+                    <p className="text-subheading max-w-md mx-auto">{label}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          ))}
         </Tabs>
       </div>
     </div>

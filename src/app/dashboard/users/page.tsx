@@ -189,45 +189,45 @@ const Users = () => {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-[#f2f2f2]">User Management</h1>
-            <p className="mt-2 text-[#a6a6a6]">
+            <h1 className="text-3xl font-bold text-foreground">User Management</h1>
+            <p className="mt-2 text-subheading">
               Manage user accounts and permissions
             </p>
           </div>
           <div className="mt-4 sm:mt-0 flex space-x-3">
-            <Button variant="outline" size="default">
+            <Button variant="outline" className='bg-primary hover:bg-secondary hover:text-foreground' size="default">
               <Download className="h-4 w-4 mr-2" />
               Export Users
             </Button>
             <Dialog open={isAddUserOpen} onOpenChange={setIsAddUserOpen}>
               <DialogTrigger asChild>
-                <Button variant="success" size="lg">
+                <Button variant="success" className='bg-primary hover:bg-secondary' size="lg">
                   <Plus className="h-4 w-4 mr-2" />
                   Add User
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px] bg-[#091315] text-[#f2f2f2]">
+              <DialogContent className="sm:max-w-[425px] bg-background text-foreground">
                 <DialogHeader>
                   <DialogTitle>Add New User</DialogTitle>
-                  <DialogDescription className="text-[#a6a6a6]">
+                  <DialogDescription className="text-secondary">
                     Enter the basic information for the new user.
                   </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
                   <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="name" className="text-right text-[#f2f2f2]">
+                    <Label htmlFor="name" className="text-right text-foreground">
                       Name
                     </Label>
                     <Input
                       id="name"
                       value={newUser.name}
                       onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-                      className="col-span-3 bg-[#172a1d] border border-[#213322] text-[#f2f2f2]"
+                      className="col-span-3 bg-secondary border border-warning text-foreground"
                       placeholder="Enter full name"
                     />
                   </div>
                   <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="email" className="text-right text-[#f2f2f2]">
+                    <Label htmlFor="email" className="text-right text-foreground">
                       Email
                     </Label>
                     <Input
@@ -235,19 +235,19 @@ const Users = () => {
                       type="email"
                       value={newUser.email}
                       onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-                      className="col-span-3 bg-[#172a1d] border border-[#213322] text-[#f2f2f2]"
+                      className="col-span-3 bg-secondary border border-background text-foreground"
                       placeholder="Enter email address"
                     />
                   </div>
                   <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="role" className="text-right text-[#f2f2f2]">
+                    <Label htmlFor="role" className="text-right text-foreground">
                       Role
                     </Label>
                     <Select value={newUser.role} onValueChange={(value) => setNewUser({ ...newUser, role: value })}>
-                      <SelectTrigger className="col-span-3 bg-[#172a1d] border border-[#213322] text-[#f2f2f2]">
+                      <SelectTrigger className="col-span-3 bg-secondary border border-background text-subheading">
                         <SelectValue placeholder="Select role" />
                       </SelectTrigger>
-                      <SelectContent className="bg-[#091315] border border-[#213322] text-[#f2f2f2]">
+                      <SelectContent className="bg-secondary border border-secondary text-subheading">
                         <SelectItem value="Admin">Admin</SelectItem>
                         <SelectItem value="Employee">Employee</SelectItem>
                         <SelectItem value="Customer">Customer</SelectItem>
@@ -255,14 +255,14 @@ const Users = () => {
                     </Select>
                   </div>
                   <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="status" className="text-right text-[#f2f2f2]">
+                    <Label htmlFor="status" className="text-right text-foreground">
                       Status
                     </Label>
                     <Select value={newUser.status} onValueChange={(value) => setNewUser({ ...newUser, status: value })}>
-                      <SelectTrigger className="col-span-3 bg-[#172a1d] border border-[#213322] text-[#f2f2f2]">
+                      <SelectTrigger className="col-span-3 bg-secondary border border-background text-subheading">
                         <SelectValue placeholder="Select status" />
                       </SelectTrigger>
-                      <SelectContent className="bg-[#091315] border border-[#213322] text-[#f2f2f2]">
+                      <SelectContent className="bg-secondary border border-secondary text-subheading">
                         <SelectItem value="Active">Active</SelectItem>
                         <SelectItem value="Inactive">Inactive</SelectItem>
                         <SelectItem value="Pending">Pending</SelectItem>
@@ -281,11 +281,11 @@ const Users = () => {
         </div>
 
         {/* Filters */}
-        <Card className="bg-[#2c482e] border border-[#213322] text-[#f2f2f2]">
+        <Card className="bg-[#2c482e] border border-background text-foreground">
           <CardContent className="py-4">
             <div className="flex flex-wrap gap-4">
               <select 
-                className="rounded-lg border-[#213322] bg-[#091315] px-3 py-2 text-sm text-[#f2f2f2]"
+                className="rounded-lg border-background bg-background px-3 py-2 text-sm text-foreground"
                 value={selectedRole}
                 onChange={(e) => handleRoleChange(e.target.value)}
               >
@@ -295,7 +295,7 @@ const Users = () => {
                 <option value="customer">Customer</option>
               </select>
               <select 
-                className="rounded-lg border-[#213322] bg-[#091315] px-3 py-2 text-sm text-[#f2f2f2]"
+                className="rounded-lg border-background bg-background px-3 py-2 text-sm text-foreground"
                 value={selectedStatus}
                 onChange={(e) => handleStatusChange(e.target.value)}
               >
@@ -309,12 +309,12 @@ const Users = () => {
         </Card>
 
         {/* User Categories */}
-        <div className="flex space-x-1 bg-[#172a1d] rounded-lg p-1">
+        <div className="flex space-x-1 bg-secondary/90 rounded-lg p-1">
           <button 
             className={`rounded-md px-3 py-2 text-sm font-medium ${
               selectedCategory === 'all' 
-                ? 'bg-[#54734e] text-[#ffffff]' 
-                : 'hover:bg-[#2c482e] hover:text-[#f2f2f2] text-[#a6a6a6]'
+                ? 'bg-secondary text-foreground' 
+                : 'hover:bg-primary hover:text-[#f2f2f2] text-[#a6a6a6]'
             }`}
             onClick={() => handleCategoryChange('all')}
           >
@@ -343,8 +343,8 @@ const Users = () => {
           <button 
             className={`rounded-md px-3 py-2 text-sm font-medium ${
               selectedCategory === 'customer' 
-                ? 'bg-[#54734e] text-[#ffffff]' 
-                : 'hover:bg-[#2c482e] hover:text-[#f2f2f2] text-[#a6a6a6]'
+                ? 'bg-secondary text-foreground' 
+                : 'hover:bg-primary hover:text-foreground text-subheading'
             }`}
             onClick={() => handleCategoryChange('customer')}
           >
@@ -353,10 +353,10 @@ const Users = () => {
         </div>
 
         {/* Users Table */}
-        <Card className="bg-[#2c482e] border border-[#213322] text-[#f2f2f2]">
+        <Card className="bg-primary border border-background text-foreground">
           <CardHeader>
             <CardTitle>Users</CardTitle>
-            <CardDescription className="text-[#a6a6a6]">
+            <CardDescription className="text-subheading">
               A list of all users in your system including their role and status.
             </CardDescription>
           </CardHeader>
@@ -364,27 +364,27 @@ const Users = () => {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-[#213322]">
-                    <th className="pb-3 text-left text-sm font-medium text-[#a6a6a6]">User</th>
-                    <th className="pb-3 text-left text-sm font-medium text-[#a6a6a6]">Email</th>
-                    <th className="pb-3 text-left text-sm font-medium text-[#a6a6a6]">Role</th>
-                    <th className="pb-3 text-left text-sm font-medium text-[#a6a6a6]">Status</th>
-                    <th className="pb-3 text-left text-sm font-medium text-[#a6a6a6]">Last Active</th>
-                    <th className="pb-3 text-left text-sm font-medium text-[#a6a6a6]">Actions</th>
+                  <tr className="border-b border-background">
+                    <th className="pb-3 text-left text-sm font-medium text-subheading">User</th>
+                    <th className="pb-3 text-left text-sm font-medium text-subheading">Email</th>
+                    <th className="pb-3 text-left text-sm font-medium text-subheading">Role</th>
+                    <th className="pb-3 text-left text-sm font-medium text-subheading">Status</th>
+                    <th className="pb-3 text-left text-sm font-medium text-subheading">Last Active</th>
+                    <th className="pb-3 text-left text-sm font-medium text-subheading">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#213322]">
+                <tbody className="divide-y divide-background">
                   {filteredUsers.map((user) => (
-                    <tr key={user.id} className="hover:bg-[#172a1d]/50 transition-colors">
+                    <tr key={user.id} className="hover:bg-background/50 transition-colors">
                       <td className="py-4">
                         <div className="flex items-center space-x-3">
-                          <div className="h-8 w-8 rounded-full bg-[#54734e] flex items-center justify-center text-[#ffffff] text-sm font-medium">
+                          <div className="h-8 w-8 rounded-full bg-secondary flex items-center justify-center text-[#ffffff] text-sm font-medium">
                             {user.initials}
                           </div>
-                          <span className="font-medium text-[#f2f2f2]">{user.name}</span>
+                          <span className="font-medium text-foreground">{user.name}</span>
                         </div>
                       </td>
-                      <td className="py-4 text-[#a6a6a6]">{user.email}</td>
+                      <td className="py-4 text-subheading">{user.email}</td>
                       <td className="py-4">
                         <Badge variant={getRoleBadgeVariant(user.role)}>
                           {user.role}
@@ -395,7 +395,7 @@ const Users = () => {
                           {user.status}
                         </Badge>
                       </td>
-                      <td className="py-4 text-[#a6a6a6]">
+                      <td className="py-4 text-subheading">
                         <div className="flex items-center space-x-1">
                           <Clock className="h-3 w-3" />
                           <span className="text-sm">{user.lastActive}</span>
@@ -414,7 +414,7 @@ const Users = () => {
 
             {/* Pagination */}
             <div className="mt-6 flex items-center justify-between">
-              <p className="text-sm text-[#a6a6a6]">
+              <p className="text-sm text-subheading">
                 Showing 1 to {filteredUsers.length} of {users.length} users
               </p>
               <div className="flex space-x-2">
