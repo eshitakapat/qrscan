@@ -61,7 +61,7 @@ export default function HeroSection() {
       <div className="mt-6 p-4 w-full max-w-3xl">
         {/* Text Box */}
         <div className="p-4 bg-[#54734e] rounded-2xl text-center"> 
-          <p className="text-[#1a1a1a] text-sm sm:text-base md:text-lg leading-relaxed">
+          <p className="text-[#141414] text-sm sm:text-base md:text-lg leading-relaxed">
             An AI-powered inventory management website helps track stock and predict demand.<br/>
             It offers smart insights with real-time alerts to prevent shortages or excess.<br/> 
             This makes inventory control faster, easier, and more efficient for businesses.
