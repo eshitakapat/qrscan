@@ -46,7 +46,7 @@ const summaryCards = [
 const Reports = () => {
   return (
     <div>
-      <div className="mx-auto max-w-7xl space-y-6">
+      <div className="min-h-screen max-w-7xl space-y-6 p-6">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <div>

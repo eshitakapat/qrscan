@@ -20,10 +20,10 @@ const Settings = () => {
 
   return (
     <div>
-      <div className="mx-auto max-w-7xl space-y-6">
+      <div className="min-h-screen max-w-7xl space-y-6 p-6">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Settings</h1>
+          <h1 className="text-3xl font-bold text-foreground ">Settings</h1>
           <p className="mt-2 text-subheading">
             Manage your account preferences
           </p>

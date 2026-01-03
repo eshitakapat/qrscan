@@ -21,7 +21,7 @@ const BentoCard = ({ src, alt }: BentoCardProps) => {
 export default function HeroSection() {
   return (
     <section className="flex items-center justify-center flex-col min-h-screen bg-[#091315] px-4 py-12">
-      <h1 className="text-lg text-[#f2f2f2] m-2 p-2">RetailTracker</h1>
+      <h1 className="text-lg text-[#f2f2f2] m-2 p-8"></h1>
       <div className="relative flex items-center justify-center">
         
         {/* Left Card (hidden on small screens) */}

@@ -129,20 +129,20 @@ export function DashboardSidebar() {
                   Main Navigation
                 </p>
                 <NavItemWithSubLabel href="/dashboard" icon={Home} label="Dashboard" active={pathname === "/dashboard"} />
-                <NavItemWithSubLabel href="/dashboard/products" icon={Package} label="Products" />
-                <NavItemWithSubLabel href="/dashboard/scanner" icon={QrCode} label="QR Scanner" />
-                <NavItemWithSubLabel href="/dashboard/forecast" icon={LineChart} label="AI Forecast" />
-                <NavItemWithSubLabel href="/dashboard/detection" icon={AlertTriangle} label="Anomaly Detection" />
-                <NavItemWithSubLabel href="/dashboard/assistant" icon={Bot} label="AI Assistant" />
+                <NavItemWithSubLabel href="/dashboard/products" icon={Package} label="Products"   active={pathname.startsWith("/dashboard/products")}/>
+                <NavItemWithSubLabel href="/dashboard/scanner" icon={QrCode} label="QR Scanner"   active={pathname.startsWith("/dashboard/scanner")}/>
+                <NavItemWithSubLabel href="/dashboard/forecast" icon={LineChart} label="AI Forecast" active={pathname.startsWith("/dashboard/forecast")}/>
+                <NavItemWithSubLabel href="/dashboard/detection" icon={AlertTriangle} label="Anomaly Detection" active={pathname.startsWith("/dashboard/detection")}/>
+                <NavItemWithSubLabel href="/dashboard/assistant" icon={Bot} label="AI Assistant" active={pathname.startsWith("/dashboard/assistant")}/>
               </div>
 
               <div>
                 <p className="px-3 mb-2 text-xs font-semibold text-muted-foreground">
                   Administration
                 </p>
-                <NavItemWithSubLabel href="/dashboard/users" icon={Users} label="Users" />
-                <NavItemWithSubLabel href="/dashboard/reports" icon={FileText} label="Reports" />
-                <NavItemWithSubLabel href="/dashboard/settings" icon={Settings} label="Settings" />
+                <NavItemWithSubLabel href="/dashboard/users" icon={Users} label="Users" active={pathname.startsWith("/dashboard/users")}/>
+                <NavItemWithSubLabel href="/dashboard/reports" icon={FileText} label="Reports" active={pathname.startsWith("/dashboard/reports")}/>
+                <NavItemWithSubLabel href="/dashboard/settings" icon={Settings} label="Settings" active={pathname.startsWith("/dashboard/settings")}/>
               </div>
             </div>
           ) : (
