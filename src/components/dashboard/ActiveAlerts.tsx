@@ -25,23 +25,23 @@ const alerts = [
 export default function ActiveAlerts() {
   return (
     <div>
-      <h2 className="text-xl font-semibold text-foreground mb-4">
+      <h2 className="text-lg sm:text-xl font-semibold text-foreground mb-3 sm:mb-4">
         Active Alerts
       </h2>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1.5 sm:gap-2">
         {alerts.map((alert, idx) => (
           <div
             key={idx}
-            className={`${alert.color} rounded-lg p-5 flex items-center gap-4`}
+            className={`${alert.color} rounded-lg p-3 sm:p-4 md:p-5 flex items-start sm:items-center gap-2.5 sm:gap-4`}
           >
             <AlertTriangle
-              className={`w-6 h-6 flex-shrink-0 ${alert.iconColor}`}
+              className={`w-5 sm:w-6 h-5 sm:h-6 flex-shrink-0 ${alert.iconColor}`}
             />
-            <div>
-              <div className="font-semibold text-foreground">
+            <div className="flex-1 min-w-0">
+              <div className="font-semibold text-foreground text-sm sm:text-base">
                 {alert.type}
               </div>
-              <div className="text-subheading text-sm">
+              <div className="text-subheading text-xs sm:text-sm leading-relaxed">
                 {alert.description}
               </div>
             </div>

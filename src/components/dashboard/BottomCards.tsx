@@ -6,17 +6,17 @@ const stats = [
     value: "$12,450",
     subtext: "+8% from yesterday",
     icon: ShoppingCart,
-    iconClass: "text-accent",              // was #8ba47d
-    valueClass: "text-foreground",          // was #e2f1e7
-    subtextClass: "text-subheading",        // was #a1b5a4
+    iconClass: "text-accent",
+    valueClass: "text-foreground",
+    subtextClass: "text-subheading",
   },
   {
     label: "Active Users",
     value: "24",
     subtext: "Currently online",
     icon: Users,
-    iconClass: "text-accent",               // was #7fa6b0 (closest)
-    valueClass: "text-foreground",           // was #e2f1e7
+    iconClass: "text-accent",
+    valueClass: "text-foreground",
     subtextClass: "text-subheading",
   },
   {
@@ -24,32 +24,41 @@ const stats = [
     value: "99.9%",
     subtext: "Uptime this month",
     icon: Activity,
-    iconClass: "text-accent",               // was #9acd32
-    valueClass: "text-foreground font-bold",    // was #9acd32
+    iconClass: "text-accent",
+    valueClass: "text-foreground font-bold",
     subtextClass: "text-subheading",
   },
 ];
 
 export default function DashboardMiniCards() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className="bg-primary border border-accent rounded-xl p-6 flex flex-col justify-between min-h-[120px] relative"
+          className="bg-primary border border-accent rounded-xl p-4 sm:p-6 flex flex-col justify-between min-h-[110px] sm:min-h-[120px] relative"
         >
-          <div className="flex items-start justify-between">
-            <div>
-              <div className="text-sm text-subheading">{stat.label}</div>
-              <div className={`text-3xl font-bold mt-1 ${stat.valueClass}`}>
+          <div className="flex items-start justify-between gap-3">
+            <div className="pr-6">
+              <div className="text-xs sm:text-sm text-subheading">
+                {stat.label}
+              </div>
+
+              <div
+                className={`text-2xl sm:text-3xl font-bold mt-1 ${stat.valueClass}`}
+              >
                 {stat.value}
               </div>
-              <div className={`text-xs mt-1 ${stat.subtextClass}`}>
+
+              <div
+                className={`text-[11px] sm:text-xs mt-1 ${stat.subtextClass}`}
+              >
                 {stat.subtext}
               </div>
             </div>
+
             <stat.icon
-              className={`w-5 h-5 ${stat.iconClass} absolute top-4 right-4`}
+              className={`w-4 h-4 sm:w-5 sm:h-5 ${stat.iconClass} absolute top-3 sm:top-4 right-3 sm:right-4`}
             />
           </div>
         </div>

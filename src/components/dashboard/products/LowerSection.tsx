@@ -81,26 +81,26 @@ function StatusBadge({ status }: StatusBadgeProps) {
 export default function ProductTable() {
   return (
     /* OUTER CONTAINER */
-    <div className="bg-primary rounded-2xl p-6 mt-8">
-      <h2 className="text-2xl font-bold text-foreground mb-1">
+    <div className="bg-primary rounded-2xl p-4 sm:p-5 md:p-6 mt-6 sm:mt-8">
+      <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1">
         Products (5)
       </h2>
-      <p className="text-subheading mb-6 text-sm">
+      <p className="text-subheading mb-4 sm:mb-6 text-xs sm:text-sm">
         Manage and monitor your product inventory
       </p>
 
       {/* INNER TABLE CONTAINER */}
       <div className="bg-[#54734e] rounded-xl border border-secondary overflow-x-auto">
-        <table className="min-w-full text-left">
+        <table className="min-w-full text-left text-xs sm:text-sm">
           <thead>
-            <tr className="text-foreground text-md bold border-b ">
-              <th className="px-6 py-4 font-normal">Product</th>
-              <th className="px-6 py-4 font-normal">Category</th>
-              <th className="px-6 py-4 font-normal">Stock</th>
-              <th className="px-6 py-4 font-normal">MinStock</th>
-              <th className="px-6 py-4 font-normal">Price</th>
-              <th className="px-6 py-4 font-normal">Status</th>
-              <th className="px-6 py-4 font-normal">Actions</th>
+            <tr className="text-foreground text-xs sm:text-sm bold border-b ">
+              <th className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 font-normal">Product</th>
+              <th className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 font-normal hidden sm:table-cell">Category</th>
+              <th className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 font-normal">Stock</th>
+              <th className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 font-normal hidden sm:table-cell">Min</th>
+              <th className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 font-normal hidden md:table-cell">Price</th>
+              <th className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 font-normal">Status</th>
+              <th className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 font-normal">Action</th>
             </tr>
           </thead>
 
@@ -114,45 +114,45 @@ export default function ProductTable() {
                     : ""
                 }
               >
-                <td className="px-6 py-4 font-medium text-foreground">
+                <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-4 font-medium text-foreground text-xs sm:text-sm">
                   {product.name}
                 </td>
-                <td className="px-6 py-4 text-foreground">
+                <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-4 text-foreground text-xs sm:text-sm hidden sm:table-cell">
                   {product.category}
                 </td>
-                <td className="px-6 py-4 text-foreground">
+                <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-4 text-foreground text-xs sm:text-sm">
                   {product.stock}
                 </td>
-                <td className="px-6 py-4 text-foreground">
+                <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-4 text-foreground text-xs sm:text-sm hidden sm:table-cell">
                   {product.minStock}
                 </td>
-                <td className="px-6 py-4 text-foreground">
+                <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-4 text-foreground text-xs sm:text-sm hidden md:table-cell">
                   {product.price}
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-4">
                   <StatusBadge status={product.status} />
                 </td>
-                <td className="px-6 py-4">
-                  <div className="flex gap-2">
+                <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-4">
+                  <div className="flex gap-1 sm:gap-2">
                     {/* ACTION BUTTONS */}
                     <button
-                      className="p-2 rounded-md border transition"
+                      className="p-1.5 sm:p-2 rounded-md border transition"
                       style={{
                         backgroundColor: "#172a1d",
                         borderColor: "#172a1d",
                       }}
                     >
-                      <QrCode className="w-4 h-4 text-subheading" />
+                      <QrCode className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-subheading" />
                     </button>
 
                     <button
-                      className="p-2 rounded-md border transition"
+                      className="p-1.5 sm:p-2 rounded-md border transition"
                       style={{
                         backgroundColor: "#172a1d",
                         borderColor: "#172a1d",
                       }}
                     >
-                      <Pencil className="w-4 h-4 text-subheading" />
+                      <Pencil className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-subheading" />
                     </button>
                   </div>
                 </td>

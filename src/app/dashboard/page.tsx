@@ -11,13 +11,13 @@ export default function DashboardPage() {
       <StatsCards />
       <ActiveAlerts/>
       <div className="mt-8">
-        <div className="w-[420px]">
+        <div className="w-full">
            <RecentActivity />
         </div>
         
       </div>
 
-      <div className="mt-4">
+      <div className="mt-8">
          <DashboardMiniCards/>
       </div>
       

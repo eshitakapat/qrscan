@@ -52,13 +52,10 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
           <div className="flex flex-1 justify-between items-center">
             <h1 className="text-xl font-semibold hidden sm:block">{getPageTitle()}</h1>
 
-            <Image
-              src="/onlyLogo.png"
-              alt="Logo"
-              width={24}
-              height={24}
-              className="sm:hidden rounded-full"
-            />
+            {/* Mobile brand */}
+            <h1 className="sm:hidden text-lg font-bold text-foreground tracking-tight">
+              RetailTracker
+            </h1>
 
             <div className="flex items-center gap-4">
               <Button variant="outline" size="icon" className="relative">

@@ -32,7 +32,7 @@ const cards = [
 
 export default function DashboardSummaryCards() {
   return (
-    <div className="flex flex-col md:flex-row gap-4 w-full">
+    <div className="flex flex-col md:flex-row gap-2 sm:gap-3 md:gap-4 w-full px-4 sm:px-0">
       {cards.map((card) => (
         <div
           key={card.label}
@@ -41,26 +41,26 @@ export default function DashboardSummaryCards() {
             bg-primary
             border-b border-foreground/70
             rounded-xl
-            p-6
+            p-3 sm:p-4 md:p-6
             flex flex-col
             justify-between
-            min-w-[220px]
+            min-w-[180px] sm:min-w-[220px]
           "
         >
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-2">
             <div>
-              <div className="text-sm font-semibold text-foreground">
+              <div className="text-xs sm:text-sm font-semibold text-foreground">
                 {card.label}
               </div>
             </div>
-            <card.icon className={`w-5 h-5 ${card.iconClass}`} />
+            <card.icon className={`w-4 sm:w-5 h-4 sm:h-5 flex-shrink-0 ${card.iconClass}`} />
           </div>
 
-          <div className={`text-3xl font-bold mt-2 ${card.valueClass}`}>
+          <div className={`text-2xl sm:text-3xl font-bold mt-2 sm:mt-3 ${card.valueClass}`}>
             {card.value}
           </div>
 
-          <div className={`text-xs mt-1 ${card.subtextClass}`}>
+          <div className={`text-xs mt-1 sm:mt-2 ${card.subtextClass}`}>
             {card.subtext}
           </div>
         </div>

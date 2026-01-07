@@ -58,17 +58,17 @@ function ConfidenceBadge({
 }) {
   const icon =
     trend === "up" ? (
-      <TrendingUp className="w-3 h-3 mr-1 text-accent" />
+      <TrendingUp className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-accent flex-shrink-0" />
     ) : trend === "down" ? (
-      <TrendingDown className="w-3 h-3 mr-1 text-accent" />
+      <TrendingDown className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-accent flex-shrink-0" />
     ) : (
-      <Circle className="w-3 h-3 mr-1 text-muted-foreground" />
+      <Circle className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-muted-foreground flex-shrink-0" />
     );
 
   return (
-    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-card text-muted-foreground">
+    <span className="inline-flex items-center gap-1 px-2 sm:px-3 py-1 rounded-full text-xs font-semibold bg-card text-muted-foreground whitespace-nowrap">
       {icon}
-      {confidence}% confidence
+      <span>{confidence}%</span>
     </span>
   );
 }
@@ -76,65 +76,65 @@ function ConfidenceBadge({
 export default function ProductForecasts() {
   return (
     /* 🔹 OUTER CONTAINER */
-    <div className="bg-primary rounded-2xl p-6 mt-8">
-      <div className="flex items-center mb-1">
-        <ShoppingCart className="w-6 h-6 text-accent mr-2" />
-        <h2 className="text-2xl font-bold text-foreground">
+    <div className="bg-primary rounded-2xl p-4 sm:p-5 md:p-6 mt-6 sm:mt-8 mx-auto">
+      <div className="flex items-center gap-2 mb-1">
+        <ShoppingCart className="w-5 sm:w-6 h-5 sm:h-6 text-accent flex-shrink-0" />
+        <h2 className="text-xl sm:text-2xl font-bold text-foreground">
           Product-Specific Forecasts
         </h2>
       </div>
 
-      <p className="text-muted-foreground mb-6 text-sm">
+      <p className="text-muted-foreground mb-4 sm:mb-6 text-xs sm:text-sm">
         AI-powered demand predictions and restock recommendations
       </p>
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
         {forecasts.map((f) => (
           /* 🔹 INNER ROW */
           <div
             key={f.name}
-            className="bg-secondary rounded-xl p-6 flex flex-col md:flex-row md:justify-between gap-4"
+            className="bg-secondary rounded-xl p-3 sm:p-4 md:p-6 flex flex-col md:flex-row md:justify-between gap-3 sm:gap-4"
           >
             {/* LEFT */}
-            <div className="flex-1">
-              <div className="font-bold text-lg text-foreground">
+            <div className="flex-1 min-w-0">
+              <div className="font-bold text-base sm:text-lg text-foreground truncate">
                 {f.name}
               </div>
 
-              <div className="flex gap-10 mt-3 text-sm">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 md:gap-10 mt-2 sm:mt-3 text-xs sm:text-sm">
                 <div>
-                  <div className="text-foreground">
+                  <div className="text-foreground/70 text-xs sm:text-sm">
                     Current Stock
                   </div>
-                  <div className="text-xl font-bold text-foreground">
+                  <div className="text-lg sm:text-xl font-bold text-foreground">
                     {f.currentStock}
                   </div>
                 </div>
 
                 <div>
-                  <div className="text-foreground">
+                  <div className="text-foreground/70 text-xs sm:text-sm">
                     Predicted Demand
                   </div>
-                  <div className="text-xl font-bold text-foreground">
+                  <div className="text-lg sm:text-xl font-bold text-foreground">
                     {f.predictedDemand}
                   </div>
                 </div>
 
                 <div>
-                  <div className="text-foreground">
+                  <div className="text-foreground/70 text-xs sm:text-sm">
                     Recommended Restock
                   </div>
-                  <div className="text-xl font-bold text-foreground">
+                  <div className="text-lg sm:text-xl font-bold text-foreground truncate">
                     {f.restockNeeded
                       ? `+${f.recommendedRestock}`
-                      : "No action needed"}
+                      : "No action"}
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center mt-4 text-sm">
+              <div className="flex items-center mt-2 sm:mt-4 text-xs sm:text-sm gap-1 sm:gap-2">
                 {f.restockNeeded && (
-                  <AlertTriangle className="w-4 h-4 mr-2 text-warning" />
+                  <AlertTriangle className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-warning flex-shrink-0" />
                 )}
                 <span className="text-warning font-medium">
                   {f.restockText}
@@ -143,7 +143,7 @@ export default function ProductForecasts() {
             </div>
 
             {/* RIGHT */}
-            <div className="flex flex-col items-end justify-between gap-4 min-w-[200px]">
+            <div className="flex flex-col items-start sm:items-end justify-between gap-2 sm:gap-4 min-w-fit sm:min-w-[200px]">
               <ConfidenceBadge
                 confidence={f.confidence}
                 trend={f.confidenceTrend}
@@ -153,16 +153,18 @@ export default function ProductForecasts() {
               <button
                 disabled={!f.restockNeeded}
                 className="
-                  px-5 py-2
+                  px-3 sm:px-4 md:px-5 py-2
                   bg-background
                   text-muted-foreground
                   rounded-md
                   border border-border
-                  text-sm
+                  text-xs sm:text-sm
                   transition
                   hover:bg-card
                   cursor-pointer
                   hover:disabled:bg-card
+                  w-full sm:w-auto
+                  whitespace-nowrap
                 "
               >
                 Create Purchase Order
