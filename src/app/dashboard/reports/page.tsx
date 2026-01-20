@@ -55,13 +55,15 @@ const Reports = () => {
               Track and analyze your inventory performance
             </p>
           </div>
-          <div className="mt-4 sm:mt-0 flex items-center space-x-3">
-            <div className="flex items-center space-x-2 text-sm text-subheading">
-              <Calendar className="h-4 w-4" />
-              <span>Apr 15, 2025 - May 15, 2025</span>
+          <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row sm:items-center sm:space-x-3 space-y-2 sm:space-y-0">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2 text-sm text-subheading space-y-1 sm:space-y-0">
+              <div className="flex items-center space-x-1">
+                <Calendar className="h-4 w-4" />
+                <span>Apr 15, 2025 - May 15, 2025</span>
+              </div>
               <span className="text-secondary">Last 30 days</span>
             </div>
-            <Button variant="outline" className='bg-primary hover:bg-secondary hover:text-foreground' size="default">
+            <Button variant="outline" className='bg-primary hover:bg-secondary hover:text-foreground w-full sm:w-auto' size="default">
               <Download className="h-4 w-4 mr-2" />
               Export Report
             </Button>
@@ -69,7 +71,7 @@ const Reports = () => {
         </div>
 
         {/* Summary Cards */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {summaryCards.map((card, index) => {
             const Icon = card.icon;
             return (
@@ -99,7 +101,7 @@ const Reports = () => {
 
         {/* Tabbed Content */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-0 overflow-x-auto">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="movement">Stock Movement</TabsTrigger>
             <TabsTrigger value="categories">Categories</TabsTrigger>
@@ -107,7 +109,7 @@ const Reports = () => {
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Inventory Trend Chart */}
               <Card>
                 <CardHeader>

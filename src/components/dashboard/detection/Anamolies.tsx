@@ -50,7 +50,7 @@ interface SeverityBadgeProps {
 function SeverityBadge({ severity, color }: SeverityBadgeProps) {
   return (
     <span
-      className={`ml-2 px-2 py-0.5 rounded-full text-xs font-semibold uppercase ${color}`}
+      className={`ml-0 sm:ml-2 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold uppercase ${color}`}
     >
       {severity}
     </span>
@@ -65,7 +65,7 @@ interface StatusBadgeProps {
 function StatusBadge({ status, color }: StatusBadgeProps) {
   return (
     <span
-      className={`ml-2 px-3 py-1 rounded-full text-xs font-semibold capitalize ${color}`}
+      className={`ml-0 sm:ml-2 px-3 py-1 rounded-full text-[10px] sm:text-xs font-semibold capitalize ${color}`}
     >
       {status}
     </span>
@@ -75,9 +75,10 @@ function StatusBadge({ status, color }: StatusBadgeProps) {
 export default function DetectedAnomalies() {
   return (
     <div className="bg-primary border border-border rounded-2xl p-4 sm:p-5 md:p-6 mt-6 sm:mt-8">
-      <div className="flex items-center gap-2 mb-1">
+      {/* Header */}
+      <div className="flex items-center gap-2 mb-1 flex-wrap">
         <AlertTriangle className="w-4 sm:w-5 h-4 sm:h-5 text-accent flex-shrink-0" />
-        <h2 className="text-xl sm:text-2xl font-bold text-foreground">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">
           Detected Anomalies
         </h2>
       </div>
@@ -93,7 +94,8 @@ export default function DetectedAnomalies() {
             className="
               bg-secondary
               rounded-xl
-              px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5
+              px-3 sm:px-4 md:px-6
+              py-3 sm:py-4 md:py-5
               flex flex-col
               md:flex-row
               md:items-center
@@ -102,14 +104,31 @@ export default function DetectedAnomalies() {
               gap-3 sm:gap-4
             "
           >
+            {/* Content */}
             <div className="flex-1 min-w-0">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 font-semibold text-base sm:text-lg mb-2 text-foreground flex-wrap">
-                <div className="flex items-center gap-1 sm:gap-2 min-w-0 flex-wrap">
-                  <Clock className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-foreground flex-shrink-0" />
-                  <span className="truncate">{a.product}</span>
-                  <span className="hidden sm:inline">–</span>
-                  <span className="text-sm sm:text-base">{a.type}</span>
-                </div>
+              <div
+                className="
+                  flex flex-wrap
+                  items-center
+                  gap-1 sm:gap-2
+                  font-semibold
+                  text-sm sm:text-base md:text-lg
+                  mb-2
+                  text-foreground
+                "
+              >
+                <Clock className="w-3.5 sm:w-4 h-3.5 sm:h-4 flex-shrink-0" />
+
+                <span className="truncate max-w-[180px] sm:max-w-none">
+                  {a.product}
+                </span>
+
+                <span className="hidden sm:inline">–</span>
+
+                <span className="text-xs sm:text-sm md:text-base">
+                  {a.type}
+                </span>
+
                 <SeverityBadge
                   severity={a.severity}
                   color={a.severityColor}
@@ -120,17 +139,26 @@ export default function DetectedAnomalies() {
                 {a.description}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-1.5 sm:gap-4 text-xs text-background flex-wrap">
+              <div
+                className="
+                  flex flex-wrap
+                  gap-x-4 gap-y-1
+                  text-[11px] sm:text-xs
+                  text-background
+                "
+              >
                 <span className="whitespace-nowrap">
                   Time:{" "}
                   <span className="text-foreground/90">{a.time}</span>
                 </span>
+
                 <span className="whitespace-nowrap">
                   Confidence:{" "}
                   <span className="text-foreground/90">
                     {a.confidence}%
                   </span>
                 </span>
+
                 <StatusBadge
                   status={a.status}
                   color={a.statusColor}
@@ -138,8 +166,16 @@ export default function DetectedAnomalies() {
               </div>
             </div>
 
-            {/* 🔒 UNIFIED ACTION BUTTONS */}
-            <div className="flex gap-2 mt-3 sm:mt-4 md:mt-0 w-full md:w-auto flex-shrink-0">
+            {/* Actions */}
+            <div
+              className="
+                flex gap-2
+                mt-3 sm:mt-4 md:mt-0
+                w-full md:w-auto
+                flex-col sm:flex-row
+                flex-shrink-0
+              "
+            >
               <button
                 className="
                   bg-card
@@ -150,10 +186,8 @@ export default function DetectedAnomalies() {
                   text-xs sm:text-sm
                   font-medium
                   transition
-                  cursor-pointer
                   hover:bg-card/50
-                  flex-1 sm:flex-none
-                  whitespace-nowrap
+                  w-full sm:w-auto
                 "
               >
                 Investigate
@@ -170,9 +204,7 @@ export default function DetectedAnomalies() {
                   font-medium
                   transition
                   hover:bg-card/50
-                  cursor-pointer
-                  flex-1 sm:flex-none
-                  whitespace-nowrap
+                  w-full sm:w-auto
                 "
               >
                 Mark Resolved

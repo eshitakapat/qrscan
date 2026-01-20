@@ -14,18 +14,11 @@ import {
   Settings,
   LogOut,
   LayoutDashboard,
+  Menu, // ✅ added
 } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { useSidebar } from "@/context/sidebar-context"
@@ -98,13 +91,22 @@ export function DashboardSidebar() {
 
   return (
     <>
+      {/* ✅ Mobile hamburger button */}
+      <div className="fixed top-4 left-4 z-30 md:hidden">
+        <Button variant="ghost" size="icon" onClick={toggle}>
+          <Menu className="h-6 w-6" />
+        </Button>
+      </div>
+
       <aside
         onMouseEnter={() => !isMobile && setExpanded(true)}
         onMouseLeave={() => !isMobile && setExpanded(false)}
         className={cn(
           "fixed md:static z-20 h-screen flex flex-col border-r transition-all duration-300",
           "bg-sidebar border-border",
-          expanded ? "w-64" : "w-20"
+          expanded ? "w-64" : "w-20",
+          isMobile && !isOpen && "-translate-x-full", // ✅ slide out on mobile
+          isMobile && isOpen && "translate-x-0"
         )}
       >
         {/* Header */}
@@ -129,20 +131,20 @@ export function DashboardSidebar() {
                   Main Navigation
                 </p>
                 <NavItemWithSubLabel href="/dashboard" icon={Home} label="Dashboard" active={pathname === "/dashboard"} />
-                <NavItemWithSubLabel href="/dashboard/products" icon={Package} label="Products"   active={pathname.startsWith("/dashboard/products")}/>
-                <NavItemWithSubLabel href="/dashboard/scanner" icon={QrCode} label="QR Scanner"   active={pathname.startsWith("/dashboard/scanner")}/>
-                <NavItemWithSubLabel href="/dashboard/forecast" icon={LineChart} label="AI Forecast" active={pathname.startsWith("/dashboard/forecast")}/>
-                <NavItemWithSubLabel href="/dashboard/detection" icon={AlertTriangle} label="Anomaly Detection" active={pathname.startsWith("/dashboard/detection")}/>
-                <NavItemWithSubLabel href="/dashboard/assistant" icon={Bot} label="AI Assistant" active={pathname.startsWith("/dashboard/assistant")}/>
+                <NavItemWithSubLabel href="/dashboard/products" icon={Package} label="Products" active={pathname.startsWith("/dashboard/products")} />
+                <NavItemWithSubLabel href="/dashboard/scanner" icon={QrCode} label="QR Scanner" active={pathname.startsWith("/dashboard/scanner")} />
+                <NavItemWithSubLabel href="/dashboard/forecast" icon={LineChart} label="AI Forecast" active={pathname.startsWith("/dashboard/forecast")} />
+                <NavItemWithSubLabel href="/dashboard/detection" icon={AlertTriangle} label="Anomaly Detection" active={pathname.startsWith("/dashboard/detection")} />
+                <NavItemWithSubLabel href="/dashboard/assistant" icon={Bot} label="AI Assistant" active={pathname.startsWith("/dashboard/assistant")} />
               </div>
 
               <div>
                 <p className="px-3 mb-2 text-xs font-semibold text-muted-foreground">
                   Administration
                 </p>
-                <NavItemWithSubLabel href="/dashboard/users" icon={Users} label="Users" active={pathname.startsWith("/dashboard/users")}/>
-                <NavItemWithSubLabel href="/dashboard/reports" icon={FileText} label="Reports" active={pathname.startsWith("/dashboard/reports")}/>
-                <NavItemWithSubLabel href="/dashboard/settings" icon={Settings} label="Settings" active={pathname.startsWith("/dashboard/settings")}/>
+                <NavItemWithSubLabel href="/dashboard/users" icon={Users} label="Users" active={pathname.startsWith("/dashboard/users")} />
+                <NavItemWithSubLabel href="/dashboard/reports" icon={FileText} label="Reports" active={pathname.startsWith("/dashboard/reports")} />
+                <NavItemWithSubLabel href="/dashboard/settings" icon={Settings} label="Settings" active={pathname.startsWith("/dashboard/settings")} />
               </div>
             </div>
           ) : (
