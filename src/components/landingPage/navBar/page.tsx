@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { useState } from "react";
 import { Menu, LogIn, UserPlus, X } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -32,14 +32,20 @@ export default function NavBar() {
       </div>
 
       {/* DESKTOP BUTTONS */}
-      <div className="hidden sm:flex space-x-2">
-        <button className="h-10 w-28 rounded-md bg-[#091315] text-[#8ba47d] transition hover:bg-[#8ba47d] hover:text-[#091315]">
-          Login
-        </button>
-        <button className="h-10 w-28 rounded-md bg-[#8ba47d] text-[#091315] transition hover:bg-[#54734e] hover:text-[#f2f2f2]">
-          Register
-        </button>
-      </div>
+       <div className="hidden sm:flex space-x-2">
+  <Link 
+  href="/auth/login">
+    <button className="h-10 w-28 rounded-md bg-[#091315] text-[#8ba47d] transition hover:bg-[#8ba47d] hover:text-[#091315] cursor-pointer">
+      Login
+    </button>
+  </Link>
+
+  <Link href="/auth/register">
+    <button className="h-10 w-28 rounded-md bg-[#8ba47d] text-[#091315] transition hover:bg-[#54734e] hover:text-[#f2f2f2] cursor-pointer">
+      Register
+    </button>
+  </Link>
+</div>
 
       {/* MOBILE MENU ICON */}
       <div className="sm:hidden">
