@@ -100,12 +100,20 @@ const Reports = () => {
         </div>
 
         {/* Tabbed Content */}
-        <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-0 overflow-x-auto">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="movement">Stock Movement</TabsTrigger>
-            <TabsTrigger value="categories">Categories</TabsTrigger>
-            <TabsTrigger value="products">Products</TabsTrigger>
+        <Tabs defaultValue="overview" className="space-y-8">
+          <TabsList className="w-full flex sm:grid sm:grid-cols-4 gap-2 overflow-x-auto pl-3 pr-2 scroll-smooth">
+            <TabsTrigger className="flex-shrink-0 whitespace-nowrap" value="overview">
+                  Overview
+            </TabsTrigger>
+            <TabsTrigger className="flex-shrink-0 whitespace-nowrap" value="movement">
+              Stock Movement
+            </TabsTrigger>
+            <TabsTrigger className="flex-shrink-0 whitespace-nowrap" value="categories">
+              Categories
+            </TabsTrigger>
+            <TabsTrigger className="flex-shrink-0 whitespace-nowrap" value="products">
+              Products
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">

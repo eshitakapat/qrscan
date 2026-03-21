@@ -146,12 +146,41 @@ const Users = () => {
         <Card className="bg-[#2c482e] border border-background text-foreground">
           <CardContent className="py-4">
             <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-              <select className="w-full sm:w-auto rounded-lg border-background bg-background px-3 py-2 text-sm text-foreground" value={selectedRole} onChange={(e) => handleRoleChange(e.target.value)}>
-                <option value="all">All Roles</option>
-                <option value="admin">Admin</option>
-                <option value="employee">Employee</option>
-                <option value="customer">Customer</option>
-              </select>
+        {/* Desktop Select */}
+        <div className="hidden sm:block">
+          <select
+            className="w-auto rounded-lg border-background bg-background px-3 py-2 text-sm text-foreground"
+            value={selectedRole}
+            onChange={(e) => handleRoleChange(e.target.value)}
+          >
+            <option value="all">All Roles</option>
+            <option value="admin">Admin</option>
+            <option value="employee">Employee</option>
+            <option value="customer">Customer</option>
+          </select>
+        </div>
+
+        {/* Mobile Grid */}
+        <div className="grid grid-cols-2 gap-2 sm:hidden">
+          {[
+            { label: "All", value: "all" },
+            { label: "Admin", value: "admin" },
+            { label: "Employee", value: "employee" },
+            { label: "Customer", value: "customer" },
+          ].map((role) => (
+            <button
+              key={role.value}
+              onClick={() => handleRoleChange(role.value)}
+              className={`rounded-lg px-3 py-2 text-sm border transition-all ${
+                selectedRole === role.value
+                  ? "bg-primary text-white"
+                  : "bg-background text-foreground"
+              }`}
+            >
+              {role.label}
+            </button>
+          ))}
+        </div>
               <select className="w-full sm:w-auto rounded-lg border-background bg-background px-3 py-2 text-sm text-foreground" value={selectedStatus} onChange={(e) => handleStatusChange(e.target.value)}>
                 <option value="all">All Statuses</option>
                 <option value="active">Active</option>

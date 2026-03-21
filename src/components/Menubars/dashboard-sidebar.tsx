@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, ComponentType } from "react"
+import { useState, ComponentType } from "react"
 import Link from "next/link"
 import {
   Home,
@@ -14,7 +14,6 @@ import {
   Settings,
   LogOut,
   LayoutDashboard,
-  Menu, // ✅ added
 } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -82,31 +81,21 @@ export function DashboardSidebar() {
   const { isOpen, toggle } = useSidebar()
   const [expanded, setExpanded] = useState(false)
 
-  const isMobile =
-    typeof window !== "undefined" && window.innerWidth < 768
-
-  useEffect(() => {
-    if (isMobile) setExpanded(isOpen)
-  }, [isMobile, isOpen])
-
   return (
     <>
-      {/* ✅ Mobile hamburger button */}
-      <div className="fixed top-4 left-4 z-30 md:hidden">
-        <Button variant="ghost" size="icon" onClick={toggle}>
-          <Menu className="h-6 w-6" />
-        </Button>
-      </div>
-
       <aside
-        onMouseEnter={() => !isMobile && setExpanded(true)}
-        onMouseLeave={() => !isMobile && setExpanded(false)}
+        onMouseEnter={() => setExpanded(true)}
+        onMouseLeave={() => setExpanded(false)}
         className={cn(
-          "fixed md:static z-20 h-screen flex flex-col border-r transition-all duration-300",
+          "fixed md:relative z-20 h-screen flex flex-col border-r transition-all duration-300",
           "bg-sidebar border-border",
+
+          // width control
           expanded ? "w-64" : "w-20",
-          isMobile && !isOpen && "-translate-x-full", // ✅ slide out on mobile
-          isMobile && isOpen && "translate-x-0"
+
+          // mobile slide
+          "translate-x-0",
+          !isOpen && "md:translate-x-0 -translate-x-full"
         )}
       >
         {/* Header */}
@@ -130,6 +119,7 @@ export function DashboardSidebar() {
                 <p className="px-3 mb-2 text-xs font-semibold text-muted-foreground">
                   Main Navigation
                 </p>
+
                 <NavItemWithSubLabel href="/dashboard" icon={Home} label="Dashboard" active={pathname === "/dashboard"} />
                 <NavItemWithSubLabel href="/dashboard/products" icon={Package} label="Products" active={pathname.startsWith("/dashboard/products")} />
                 <NavItemWithSubLabel href="/dashboard/scanner" icon={QrCode} label="QR Scanner" active={pathname.startsWith("/dashboard/scanner")} />
@@ -142,6 +132,7 @@ export function DashboardSidebar() {
                 <p className="px-3 mb-2 text-xs font-semibold text-muted-foreground">
                   Administration
                 </p>
+
                 <NavItemWithSubLabel href="/dashboard/users" icon={Users} label="Users" active={pathname.startsWith("/dashboard/users")} />
                 <NavItemWithSubLabel href="/dashboard/reports" icon={FileText} label="Reports" active={pathname.startsWith("/dashboard/reports")} />
                 <NavItemWithSubLabel href="/dashboard/settings" icon={Settings} label="Settings" active={pathname.startsWith("/dashboard/settings")} />
@@ -165,9 +156,10 @@ export function DashboardSidebar() {
         {/* User */}
         <div className="border-t border-border p-3 flex items-center justify-between">
           <Avatar className="h-8 w-8">
-            <AvatarImage src="/placeholder.svg" />
+            <AvatarImage src="https://ui-avatars.com/api/?name=JD" />
             <AvatarFallback>JD</AvatarFallback>
           </Avatar>
+
           {expanded && (
             <Button variant="ghost" size="icon">
               <LogOut className="h-4 w-4 text-muted-foreground" />

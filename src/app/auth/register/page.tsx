@@ -1,131 +1,262 @@
 "use client";
 
-import { EyeOff } from "lucide-react";
-import Image from "next/image";
+import { useState } from "react";
+import {
+  Eye,
+  EyeOff,
+  Mail,
+  Lock,
+  Phone,
+  UserPlus,
+  Chrome,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function RegisterPage() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const [formData, setFormData] = useState({
+    phone: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    termsAccepted: false,
+  });
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.termsAccepted) {
+      alert("Please accept the terms and conditions");
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    setIsLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setIsLoading(false);
+  };
+
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-4">
-      <div className="w-full max-w-sm text-white">
-        {/* Title */}
-        <h1 className="text-2xl font-semibold text-center">
-          Create Account
-        </h1>
-        <p className="text-sm text-gray-400 text-center mt-1">
-          Build, test, and launch full-stack web and mobile apps — all in one flow.
-        </p>
+    <div className="min-h-screen bg-background flex items-center justify-center px-4 py-8 sm:py-12">
+      <div className="w-full max-w-md">
 
-        {/* Form */}
-        <form className="mt-8 space-y-4">
-          {/* Phone Number */}
-          <div className="flex gap-2">
-            <div className="flex items-center gap-1 bg-[#1a1a1a] px-3 rounded-xl">
-             <img
-  src="https://flagcdn.com/w20/in.png"
-  alt="India"
-  className="w-5 h-4"
-/>
+        {/* Header */}
+        <div className="text-center mb-8 space-y-2 sm:mb-10">
+          <h1 className="text-3xl sm:text-4xl font-bold text-foreground">
+            Create Account
+          </h1>
 
-              <span className="text-sm">+91</span>
+          <p className="text-muted-foreground text-sm sm:text-base">
+            Join us to start managing your inventory efficiently
+          </p>
+        </div>
+
+        {/* Card */}
+        <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border border-border py-6 px-6 sm:py-8 shadow-sm">
+
+          {/* Card Header */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <UserPlus className="h-5 w-5 text-muted-foreground" />
+              <h2 className="text-xl font-semibold">
+                Create New Account
+              </h2>
             </div>
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              className="flex-1 rounded-xl bg-[#1a1a1a] px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-white/20"
-            />
+
+            <p className="text-muted-foreground text-sm">
+              Fill in the details below to get started
+            </p>
           </div>
 
-          {/* Email */}
-          <input
-            type="email"
-            placeholder="Email Address"
-            className="w-full rounded-xl bg-[#1a1a1a] px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-white/20"
-          />
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-5">
 
-          {/* Password */}
-          <div className="relative">
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full rounded-xl bg-[#1a1a1a] px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-white/20"
-            />
-            <EyeOff className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 cursor-pointer" />
-          </div>
+            {/* Phone */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium">
+                Phone Number
+              </label>
 
-          {/* Confirm Password */}
-          <div className="relative">
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              className="w-full rounded-xl bg-[#1a1a1a] px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-white/20"
-            />
-            <EyeOff className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 cursor-pointer" />
-          </div>
+              <div className="flex gap-2">
+                <div className="flex items-center px-3 py-2 rounded-md border border-border bg-background">
+                  <span className="text-sm font-medium text-muted-foreground">
+                    🇮🇳 +91
+                  </span>
+                </div>
 
-          {/* Terms */}
-          <label className="flex items-start gap-2 text-xs text-gray-400">
-            <input type="checkbox" className="mt-1 accent-white" />
-            <span>
-              By creating an account, you agree to our{" "}
-              <span className="text-white underline cursor-pointer">
-                Terms of Use
-              </span>{" "}
+                <div className="relative flex-1">
+                  <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+
+                  <input
+                    name="phone"
+                    type="tel"
+                    placeholder="9876543210"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full pl-10 pr-4 py-2 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-ring"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium">
+                Email Address
+              </label>
+
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full pl-10 pr-4 py-2 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-ring"
+                />
+              </div>
+            </div>
+
+            {/* Password */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium">
+                Password
+              </label>
+
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+
+                <input
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="••••••••"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full pl-10 pr-10 py-2 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-ring"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground cursor-pointer"
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Confirm Password */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium">
+                Confirm Password
+              </label>
+
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+
+                <input
+                  name="confirmPassword"
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="••••••••"
+                  value={formData.confirmPassword}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full pl-10 pr-10 py-2 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-ring"
+                />
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setShowConfirmPassword(!showConfirmPassword)
+                  }
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground cursor-pointer"
+                >
+                  {showConfirmPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Terms */}
+            <label className="flex gap-3 cursor-pointer text-muted-foreground text-sm">
+              <input
+                type="checkbox"
+                name="termsAccepted"
+                checked={formData.termsAccepted}
+                onChange={handleInputChange}
+                className="mt-1 h-4 w-4 accent-primary"
+              />
+              I agree to the{" "}
+              <Link href="/terms" className="underline hover:text-foreground">
+                Terms
+              </Link>{" "}
               and{" "}
-              <span className="text-white underline cursor-pointer">
+              <Link href="/privacy" className="underline hover:text-foreground">
                 Privacy Policy
-              </span>.
-            </span>
-          </label>
+              </Link>
+            </label>
 
-          {/* Create Button */}
+            {/* Submit */}
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full h-10 font-semibold bg-primary text-primary-foreground rounded-md hover:bg-primary/80 transition disabled:opacity-50 cursor-pointer"
+            >
+              {isLoading ? "Creating..." : "Create Account"}
+            </button>
+
+          </form>
+
+          {/* Social */}
           <button
-            type="submit"
-            className="w-full rounded-full bg-white text-black py-3 font-medium hover:bg-gray-200 transition"
+            type="button"
+            className="flex items-center justify-center gap-2 rounded-md border border-border bg-background py-2 hover:bg-primary/10 transition cursor-pointer"
           >
-            Create account
+            <Chrome className="h-4 w-4" />
+            Sign up with Google
           </button>
-        </form>
 
-        {/* Divider */}
-        <div className="flex items-center my-6">
-          <div className="flex-1 h-px bg-gray-700" />
-          <span className="px-3 text-xs text-gray-400">
-            or continue with
-          </span>
-          <div className="flex-1 h-px bg-gray-700" />
         </div>
 
-        {/* Social Login */}
-        <div className="flex justify-center gap-4">
-          <button className="h-10 w-10 rounded-full bg-white flex items-center justify-center">
-            <Image
-              src="https://www.svgrepo.com/show/475656/google-color.svg"
-              alt="Google"
-              width={18}
-              height={18}
-            />
-          </button>
-
-          <button className="h-10 w-10 rounded-full bg-white flex items-center justify-center">
-            <Image
-              src="https://www.svgrepo.com/show/475647/facebook-color.svg"
-              alt="Facebook"
-              width={18}
-              height={18}
-            />
-          </button>
+        {/* Login */}
+        <div className="text-center mt-6 text-muted-foreground text-sm">
+          Already have an account?{" "}
+          <Link
+            href="/auth/login"
+            className="font-semibold hover:text-foreground underline"
+          >
+            Sign in
+          </Link>
         </div>
 
-        {/* Login Redirect */}
-        <p className="text-center text-sm text-gray-400 mt-6">
-          Already have an account?
-        </p>
-
-        <button
-          className="w-full mt-2 rounded-full bg-[#1a1a1a] py-3 text-sm hover:bg-[#2a2a2a] transition"
-        >
-          Login
-        </button>
       </div>
     </div>
   );

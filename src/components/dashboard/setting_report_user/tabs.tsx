@@ -33,13 +33,12 @@ const Tabs: React.FC<TabsProps> = ({ defaultValue, className, children, ...props
     </TabsContext.Provider>
   )
 }
-
 const TabsList = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(
-        "inline-flex h-10 items-center justify-center rounded-md bg-[#172a1d] p-1 text-[#a6a6a6]",
+        "flex h-10 items-center justify-start overflow-x-auto rounded-md bg-[#172a1d] p-1 text-[#a6a6a6]",
         className
       )}
       {...props}
