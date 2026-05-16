@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -9,15 +10,21 @@ import {
   LogIn,
   Chrome,
 } from "lucide-react";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const [role, setRole] = useState("admin");
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -37,7 +44,25 @@ export default function LoginPage() {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log("Login attempt:", formData);
+
+      console.log("Login attempt:", {
+        ...formData,
+        role,
+      });
+
+      // Role-based routing
+      if (role === "admin") {
+        router.push("/dashboard");
+      }
+
+      if (role === "employee") {
+        router.push("/admin/dashboard");
+      }
+
+      if (role === "customer") {
+        router.push("/customer/detailsPage");
+      }
+
     } finally {
       setIsLoading(false);
     }
@@ -133,6 +158,59 @@ export default function LoginPage() {
               </div>
             </div>
 
+            {/* Account Type */}
+            <div className="space-y-3">
+              <label className="block text-sm font-medium">
+                Account Type
+              </label>
+
+              <div className="space-y-2">
+
+                {/* Admin */}
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="admin"
+                    checked={role === "admin"}
+                    onChange={(e) => setRole(e.target.value)}
+                    className="h-4 w-4 accent-green-500"
+                  />
+
+                  <span>Admin / Owner</span>
+                </label>
+
+                {/* Employee */}
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="employee"
+                    checked={role === "employee"}
+                    onChange={(e) => setRole(e.target.value)}
+                    className="h-4 w-4 accent-green-500"
+                  />
+
+                  <span>Employee</span>
+                </label>
+
+                {/* Customer */}
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="customer"
+                    checked={role === "customer"}
+                    onChange={(e) => setRole(e.target.value)}
+                    className="h-4 w-4 accent-green-500"
+                  />
+
+                  <span>Customer</span>
+                </label>
+
+              </div>
+            </div>
+
             {/* Forgot Password */}
             <div className="flex justify-end">
               <Link
@@ -189,6 +267,7 @@ export default function LoginPage() {
                   clipRule="evenodd"
                 />
               </svg>
+
               GitHub
             </button>
 
@@ -211,3 +290,4 @@ export default function LoginPage() {
     </div>
   );
 }
+
