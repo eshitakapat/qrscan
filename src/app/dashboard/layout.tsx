@@ -15,6 +15,9 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
   const [notifications] = useState(3);
   const pathname = usePathname();
   const { toggle, isOpen } = useSidebar();
+  const user = {
+    name: "John Doe",
+  };
 
   const getPageTitle = () => {
     const path = pathname.split("/")[2] || "";
@@ -69,7 +72,13 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
 
               <Avatar>
                 <AvatarImage src="/placeholder.svg" />
-                <AvatarFallback>JD</AvatarFallback>
+                  <AvatarFallback className="bg-[#4B4038] text-[#CAAA98]">
+                  {user?.name
+                    ?.split(" ")
+                    .map((word) => word[0])
+                    .join("")
+                    .toUpperCase() || "U"}
+                </AvatarFallback>
               </Avatar>
             </div>
           </div>

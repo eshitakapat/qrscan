@@ -1,91 +1,188 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { DashboardSidebar } from "@/components/Menubars/dashboard-sidebar";
+
+import {DashboardSidebarEmployee}  from "@/components/employee/dashboard/sidebar/page";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+
 import { Bell, Menu, X } from "lucide-react";
-import { SidebarProvider, useSidebar } from "@/context/sidebar-context";
-import Image from "next/image";
+
+import {
+  SidebarProvider,
+  useSidebar,
+} from "@/context/sidebar-context";
+
 import { Toaster } from "sonner";
 
-function DashboardContent({ children }: { children: React.ReactNode }) {
+function DashboardContent({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [notifications] = useState(3);
+
   const pathname = usePathname();
+
   const { toggle, isOpen } = useSidebar();
 
+  const user = {
+    name: "John Doe",
+  };
+
   const getPageTitle = () => {
-    const path = pathname.split("/")[2] || "";
+    const path = pathname.split("/")[3] || "";
+
     const titles: Record<string, string> = {
       "": "Dashboard",
-      profile: "My Profile",
-      calendar: "Event Calendar",
-      rankings: "Rankings",
-      "test-series": "Test Series",
-      assessments: "Assessments",
-      classroom: "Classroom",
-      help: "Help Desk",
+      products: "Products",
+      scanner: "QR Scanner",
       settings: "Settings",
     };
+
     return titles[path] || "Dashboard";
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background">
-      <DashboardSidebar />
+    <div className="flex h-screen overflow-hidden bg-[#202940]">
+      
+      {/* Sidebar */}
+      <DashboardSidebarEmployee />
 
-      <div className="flex-1 overflow-auto">
-        <header className="sticky top-0 z-10 flex h-16 items-center gap-4 bg-card border-b border-border px-6">
-          <div className="md:hidden">
+      {/* Main */}
+      <div className="flex flex-1 flex-col overflow-hidden">
+        
+        {/* Header */}
+        <header
+          className="
+            sticky top-0 z-20
+            flex h-16 items-center justify-between
+            border-b border-[#4B4038]
+            bg-[#202940]
+            px-6
+          "
+        >
+          
+          {/* Left */}
+          <div className="flex items-center gap-4">
+            
+            {/* Mobile Toggle */}
             <Button
               variant="ghost"
               size="icon"
-              className="hover:bg-primary border border-border"
               onClick={toggle}
+              className="
+                md:hidden
+                border border-[#4B4038]
+                text-[#CAAA98]
+                hover:bg-[#4B4038]
+              "
             >
-              {isOpen ? <X /> : <Menu />}
+              {isOpen ? <X size={18} /> : <Menu size={18} />}
             </Button>
+
+            {/* Title */}
+            <h1 className="text-2xl font-bold text-[#CAAA98]">
+              {getPageTitle()}
+            </h1>
           </div>
 
-          <div className="flex flex-1 justify-between items-center">
-            <h1 className="text-xl font-semibold hidden sm:block">{getPageTitle()}</h1>
+          {/* Right */}
+          <div className="flex items-center gap-4">
+            
+            {/* Notifications */}
+            <Button
+              variant="outline"
+              size="icon"
+              className="
+                relative
+                border-[#4B4038]
+                bg-transparent
+                text-[#CAAA98]
+                hover:bg-[#4B4038]
+              "
+            >
+              <Bell className="h-5 w-5" />
 
-            {/* Mobile brand */}
-            <h1 className="sm:hidden text-lg font-bold text-foreground tracking-tight">
-              RetailTracker
-            </h1>
+              {notifications > 0 && (
+                <Badge
+                  className="
+                    absolute -right-1 -top-1
+                    flex h-5 w-5 items-center justify-center
+                    rounded-full
+                    bg-[#9A8678]
+                    p-0
+                    text-[10px]
+                    text-[#202940]
+                  "
+                >
+                  {notifications}
+                </Badge>
+              )}
+            </Button>
 
-            <div className="flex items-center gap-4">
-              <Button variant="outline" size="icon" className="relative">
-                <Bell className="h-5 w-5" />
-                {notifications > 0 && (
-                  <Badge className="absolute -right-1 -top-1 h-5 w-5 rounded-full p-0">
-                    {notifications}
-                  </Badge>
-                )}
-              </Button>
+            {/* Avatar */}
+            <Avatar className="border border-[#4B4038]">
+              <AvatarImage src="/placeholder.svg" />
 
-              <Avatar>
-                <AvatarImage src="/placeholder.svg" />
-                <AvatarFallback>JD</AvatarFallback>
-              </Avatar>
-            </div>
+              <AvatarFallback
+                className="
+                  bg-[#4B4038]
+                  text-[#CAAA98]
+                "
+              >
+                {user.name
+                  .split(" ")
+                  .map((word) => word[0])
+                  .join("")
+                  .toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
           </div>
         </header>
 
-        <main className="px-4 md:px-8 py-4">{children}</main>
-        <Toaster />
+        {/* Page Content */}
+        <main
+          className="
+            flex-1 overflow-y-auto
+            bg-[#202940]
+            px-4 py-6
+            text-[#CAAA98]
+            md:px-8
+          "
+        >
+          {children}
+        </main>
+
+        {/* Toast */}
+        <Toaster
+          theme="dark"
+          toastOptions={{
+            style: {
+              background: "#4B4038",
+              color: "#CAAA98",
+              border: "1px solid #9A8678",
+            },
+          }}
+        />
       </div>
     </div>
   );
 }
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <SidebarProvider>
-      <DashboardContent>{children}</DashboardContent>
+      <DashboardContent>
+        {children}
+      </DashboardContent>
     </SidebarProvider>
   );
 }
