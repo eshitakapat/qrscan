@@ -104,58 +104,58 @@ export function DashboardSidebarEmployee() {
     <div className="space-y-3 px-3">
       
       <NavItemWithSubLabel
-        href="/admin/dashboard"
+        href="/employee/dashboard"
         icon={Home}
         label="Dashboard"
-        active={pathname === "/admin/dashboard"}
+        active={pathname === "/employee/dashboard"}
       />
 
       <NavItemWithSubLabel
-        href="/admin/dashboard/products"
+        href="/employee/dashboard/products"
         icon={Package}
         label="Products"
-        active={pathname.startsWith("/admin/dashboard/products")}
+        active={pathname.startsWith("/employee/dashboard/products")}
       />
 
       <NavItemWithSubLabel
-        href="/admin/dashboard/scanner"
+        href="/employee/dashboard/scanner"
         icon={QrCode}
         label="QR Scanner"
-        active={pathname.startsWith("/admin/dashboard/scanner")}
+        active={pathname.startsWith("/employee/dashboard/scanner")}
       />
 
       <NavItemWithSubLabel
-        href="/admin/dashboard/settings"
+        href="/employee/dashboard/settings"
         icon={Settings}
         label="Settings"
-        active={pathname.startsWith("/admin/dashboard/settings")}
+        active={pathname.startsWith("/employee/dashboard/settings")}
       />
     </div>
   ) : (
     <div className="space-y-4 px-2">
       
       <NavItem
-        href="/admin/dashboard"
+        href="/employee/dashboard"
         icon={Home}
-        active={pathname === "/admin/dashboard"}
+        active={pathname === "/employee/dashboard"}
       />
 
       <NavItem
-        href="/admin/dashboard/products"
+        href="/employee/dashboard/products"
         icon={Package}
-        active={pathname.startsWith("/admin/dashboard/products")}
+        active={pathname.startsWith("/employee/dashboard/products")}
       />
 
       <NavItem
-        href="/admin/dashboard/scanner"
+        href="/employee/dashboard/scanner"
         icon={QrCode}
-        active={pathname.startsWith("/admin/dashboard/scanner")}
+        active={pathname.startsWith("/employee/dashboard/scanner")}
       />
 
       <NavItem
-        href="/admin/dashboard/settings"
+        href="/employee/dashboard/settings"
         icon={Settings}
-        active={pathname.startsWith("/admin/dashboard/settings")}
+        active={pathname.startsWith("/employee/dashboard/settings")}
       />
     </div>
   )}
