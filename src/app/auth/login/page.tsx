@@ -242,7 +242,7 @@ export default function LoginPage() {
           </div>
 
           {/* Social */}
-          <div className="grid grid-cols-2 gap-3">
+          {/* <div className="grid grid-cols-2 gap-3"> */}
 
             <button
               type="button"
@@ -252,7 +252,7 @@ export default function LoginPage() {
               Google
             </button>
 
-            <button
+            {/* <button
               type="button"
               className="flex items-center justify-center gap-2 rounded-md border border-border bg-background py-2 hover:bg-primary/10 transition cursor-pointer"
             >
@@ -269,9 +269,9 @@ export default function LoginPage() {
               </svg>
 
               GitHub
-            </button>
+            </button> *
 
-          </div>
+          </div>*/}
 
         </div>
 
