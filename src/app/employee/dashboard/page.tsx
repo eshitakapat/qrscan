@@ -3,7 +3,22 @@ import RecentActivity from "@/components/employee/dashboard/RecentActivity";
 import DashboardMiniCards from "@/components/employee/dashboard/BottomCards";
 import { QrCode } from "lucide-react";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
 export default function DashboardPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+
+    if (
+      role !== "employee" &&
+      role !== "admin"
+    ) {
+      router.push("/auth/login");
+    }
+  }, [router]);
   return (
     <div className="min-h-screen bg-[#202940] px-6 py-8 text-[#CAAA98]">
       

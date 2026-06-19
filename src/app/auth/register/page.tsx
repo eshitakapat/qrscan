@@ -1,5 +1,5 @@
 "use client";
-
+import { registerUser } from "@/lib/auth";
 import { useState } from "react";
 import {
   Eye,
@@ -15,10 +15,11 @@ import Link from "next/link";
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [role, setRole] = useState("customer");
 
   const [formData, setFormData] = useState({
     phone: "",
-    email: "",
+    username: "",
     password: "",
     confirmPassword: "",
     termsAccepted: false,
@@ -47,9 +48,23 @@ export default function RegisterPage() {
       return;
     }
 
-    setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+
+      const data = await registerUser(
+        formData.username,
+        formData.password,
+        role
+      );
+
+      alert(data.message);
+
+    } catch (error) {
+      console.error(error);
+      alert("Registration failed");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -87,7 +102,7 @@ export default function RegisterPage() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
 
-            {/* Phone */}
+            {/* Phone
             <div className="space-y-2">
               <label className="block text-sm font-medium">
                 Phone Number
@@ -114,26 +129,80 @@ export default function RegisterPage() {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
 
-            {/* Email */}
+            {/* Username */}
             <div className="space-y-2">
               <label className="block text-sm font-medium">
-                Email Address
+                Username
               </label>
 
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <UserPlus className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
 
                 <input
-                  name="email"
-                  type="email"
-                  placeholder="you@example.com"
-                  value={formData.email}
+                  name="username"
+                  type="text"
+                  placeholder="Enter your username"
+                  value={formData.username}
                   onChange={handleInputChange}
                   required
                   className="w-full pl-10 pr-4 py-2 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-ring"
                 />
+              </div>
+            </div>
+
+
+            {/* Account Type */}
+            <div className="space-y-3">
+              <label className="block text-sm font-medium">
+                Account Type
+              </label>
+
+              <div className="space-y-2">
+
+                {/* Admin */}
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="admin"
+                    checked={role === "admin"}
+                    onChange={(e) => setRole(e.target.value)}
+                    className="h-4 w-4 accent-green-500"
+                  />
+
+                  <span>Admin / Owner</span>
+                </label>
+
+                {/* Employee */}
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="employee"
+                    checked={role === "employee"}
+                    onChange={(e) => setRole(e.target.value)}
+                    className="h-4 w-4 accent-green-500"
+                  />
+
+                  <span>Employee</span>
+                </label>
+
+                {/* Customer */}
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="customer"
+                    checked={role === "customer"}
+                    onChange={(e) => setRole(e.target.value)}
+                    className="h-4 w-4 accent-green-500"
+                  />
+
+                  <span>Customer</span>
+                </label>
+
               </div>
             </div>
 
