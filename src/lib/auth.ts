@@ -37,3 +37,22 @@ export const loginUser = async (
 
   return response.json();
 };
+
+export const googleLogin = async (
+  credential: string
+) => {
+  const response = await fetch(
+    "http://localhost:7001/api/auth/google",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        credential,
+      }),
+    }
+  );
+
+  return response.json();
+};

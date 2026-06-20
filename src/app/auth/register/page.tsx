@@ -1,4 +1,5 @@
 "use client";
+import GoogleLoginButton from "@/components/auth/GoogleLoginButton";
 import { registerUser } from "@/lib/auth";
 import { useState } from "react";
 import {
@@ -305,13 +306,14 @@ export default function RegisterPage() {
           </form>
 
           {/* Social */}
-          <button
+          <GoogleLoginButton />
+          {/* <button
             type="button"
             className="flex items-center justify-center gap-2 rounded-md border border-border bg-background py-2 hover:bg-primary/10 transition cursor-pointer"
           >
             <Chrome className="h-4 w-4" />
             Sign up with Google
-          </button>
+          </button> */}
 
         </div>
 

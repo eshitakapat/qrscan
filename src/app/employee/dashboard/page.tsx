@@ -1,3 +1,4 @@
+"use client";
 import StatsCards from "@/components/employee/dashboard/DashboardCards";
 import RecentActivity from "@/components/employee/dashboard/RecentActivity";
 import DashboardMiniCards from "@/components/employee/dashboard/BottomCards";

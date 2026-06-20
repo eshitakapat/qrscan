@@ -1,4 +1,5 @@
 "use client";
+import GoogleLoginButton from "@/components/auth/GoogleLoginButton";
 import { loginUser } from "@/lib/auth";
 import { useState } from "react";
 import {
@@ -8,6 +9,7 @@ import {
   Lock,
   LogIn,
   Chrome,
+  UserPlus,
 } from "lucide-react";
 
 import Link from "next/link";
@@ -126,7 +128,7 @@ export default function LoginPage() {
               </label>
 
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <UserPlus className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
 
                 <input
                   name="username"
@@ -206,15 +208,10 @@ export default function LoginPage() {
           </div>
 
           {/* Social */}
+          <GoogleLoginButton />
+          
           {/* <div className="grid grid-cols-2 gap-3"> */}
 
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 rounded-md border border-border bg-background py-2 hover:bg-primary/10 transition cursor-pointer"
-            >
-              <Chrome className="h-4 w-4" />
-              Google
-            </button>
 
             {/* <button
               type="button"
