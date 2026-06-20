@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { QrCode, Package } from "lucide-react";
 
 const recentScans = [
@@ -16,6 +18,19 @@ const recentScans = [
 ];
 
 export default function CustomerDashboardPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+
+    if (
+      role !== "customer" &&
+      role !== "employee" &&
+      role !== "admin"
+    ) {
+      router.push("/auth/login");
+    }
+  }, [router]);
   return (
     <div className="min-h-screen bg-[#021526] px-6 py-10 text-[#E2E2B6]">
       

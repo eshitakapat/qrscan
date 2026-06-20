@@ -1,6 +1,6 @@
-
 "use client";
-
+import GoogleLoginButton from "@/components/auth/GoogleLoginButton";
+import { loginUser } from "@/lib/auth";
 import { useState } from "react";
 import {
   Eye,
@@ -9,6 +9,7 @@ import {
   Lock,
   LogIn,
   Chrome,
+  UserPlus,
 } from "lucide-react";
 
 import Link from "next/link";
@@ -20,11 +21,11 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
-  const [role, setRole] = useState("admin");
+  // const [role, setRole] = useState("admin");
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -37,37 +38,53 @@ export default function LoginPage() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (
+    e: React.FormEvent
+  ) => {
     e.preventDefault();
 
-    setIsLoading(true);
-
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setIsLoading(true);
 
-      console.log("Login attempt:", {
-        ...formData,
-        role,
-      });
+      const data = await loginUser(
+        formData.username,
+        formData.password
+      );
 
-      // Role-based routing
-      if (role === "admin") {
-        router.push("/dashboard");
+      if (!data.token) {
+        alert("Invalid credentials");
+        return;
       }
 
-      if (role === "employee") {
-        router.push("/employee/dashboard");
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("role", data.role);
+      localStorage.setItem("username", data.username);
+
+      switch (data.role) {
+        case "admin":
+          router.push("/dashboard");
+          break;
+
+        case "employee":
+          router.push("/employee/dashboard");
+          break;
+
+        case "customer":
+          router.push("/customer/detailsPage");
+          break;
+
+        default:
+          router.push("/");
       }
 
-      if (role === "customer") {
-        router.push("/customer/detailsPage");
-      }
-
+    } catch (error) {
+      console.error(error);
+      alert("Login failed");
     } finally {
       setIsLoading(false);
     }
   };
-
+  
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4 py-8 sm:py-12">
       <div className="w-full max-w-md">
@@ -104,20 +121,20 @@ export default function LoginPage() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
 
-            {/* Email */}
+            {/* Username */}
             <div className="space-y-2">
               <label className="block text-sm font-medium">
-                Email Address
+                Username
               </label>
 
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <UserPlus className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
 
                 <input
-                  name="email"
-                  type="email"
-                  placeholder="you@example.com"
-                  value={formData.email}
+                  name="username"
+                  type="text"
+                  placeholder="Enter your username"
+                  value={formData.username}
                   onChange={handleInputChange}
                   required
                   className="w-full pl-10 pr-4 py-2 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-ring"
@@ -158,58 +175,7 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* Account Type */}
-            <div className="space-y-3">
-              <label className="block text-sm font-medium">
-                Account Type
-              </label>
 
-              <div className="space-y-2">
-
-                {/* Admin */}
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="role"
-                    value="admin"
-                    checked={role === "admin"}
-                    onChange={(e) => setRole(e.target.value)}
-                    className="h-4 w-4 accent-green-500"
-                  />
-
-                  <span>Admin / Owner</span>
-                </label>
-
-                {/* Employee */}
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="role"
-                    value="employee"
-                    checked={role === "employee"}
-                    onChange={(e) => setRole(e.target.value)}
-                    className="h-4 w-4 accent-green-500"
-                  />
-
-                  <span>Employee</span>
-                </label>
-
-                {/* Customer */}
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="role"
-                    value="customer"
-                    checked={role === "customer"}
-                    onChange={(e) => setRole(e.target.value)}
-                    className="h-4 w-4 accent-green-500"
-                  />
-
-                  <span>Customer</span>
-                </label>
-
-              </div>
-            </div>
 
             {/* Forgot Password */}
             <div className="flex justify-end">
@@ -242,15 +208,10 @@ export default function LoginPage() {
           </div>
 
           {/* Social */}
+          <GoogleLoginButton />
+          
           {/* <div className="grid grid-cols-2 gap-3"> */}
 
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 rounded-md border border-border bg-background py-2 hover:bg-primary/10 transition cursor-pointer"
-            >
-              <Chrome className="h-4 w-4" />
-              Google
-            </button>
 
             {/* <button
               type="button"
